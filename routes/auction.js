@@ -8,3 +8,17 @@ function getAllAction(req, res){
 		res.render('index',{data: rows});
 	});
 }
+
+function getAuction(req, res){}
+
+function createAuction(req, res){}
+
+function bidAuction(req, res){}
+
+function deleteAuction(req, res){}
+
+exports.getAllAction = getAllAction;
+exports.getAuction = getAuction;
+exports.createAuction = createAuction;
+exports.bidAuction = bidAuction;
+exports.deleteAuction = deleteAuction;
