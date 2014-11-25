@@ -20,7 +20,7 @@ function getCon(){
 				user : 'root',
 				password : '12345678',
 				port : '3306',
-				database : 'test'
+				database : 'cmpe273project'
 				});
 		}
 	}
@@ -50,7 +50,7 @@ var connection = mysql.createConnection({
 	user : 'root',
 	password : '12345678',
 	port : '3306',
-	database : 'test'
+	database : 'cmpe273project'
 	});
 
 
