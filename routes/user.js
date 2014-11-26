@@ -173,8 +173,9 @@ function deserializeUser(email,done){
 				})
 
 		}
+
+
 exports.root=root;
-exports.logout=logout;
 exports.deserializeUser = deserializeUser;
 exports.serializeUser = serializeUser
 exports.login=login;
@@ -187,3 +188,4 @@ exports.passportAauth = passportAauth;
 exports.profile=profile;
 exports.getAllSeller=getAllSeller;
 exports.getAllCustomer=getAllCustomer;
+exports.logout=logout;
