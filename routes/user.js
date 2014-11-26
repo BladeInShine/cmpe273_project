@@ -5,7 +5,7 @@ var passpport=require('passport');
  
 function root(req,res){
 	
-	req.render('home');
+	res.render('home');
 	
 }
 
@@ -173,7 +173,7 @@ function deserializeUser(email,done){
 				})
 
 		}
-
+exports.root=root;
 exports.logout=logout;
 exports.deserializeUser = deserializeUser;
 exports.serializeUser = serializeUser
