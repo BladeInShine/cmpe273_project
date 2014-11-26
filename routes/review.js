@@ -7,6 +7,6 @@ function deleteReview(req, res){}
 
 
 exports.getReviewPage = getReviewPage;
-exports.getReviewPage = createReview;
-exports.getReviewPage = getReview;
-exports.getReviewPage = deleteReview;
+exports.createReview = createReview;
+exports.getReview = getReview;
+exports.deleteReview = deleteReview;
