@@ -111,7 +111,7 @@ app.get('/auction/:auctionid', auction.getAuction);
 
 app.post('/auction', auction.createAuction);
 
-app.post('/bidproduct', auction.bidAuction);
+app.post('/bidauction', auction.bidAuction);
 
 app.post('/deleteAuction', auction.deleteAuction);
 

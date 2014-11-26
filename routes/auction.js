@@ -1,5 +1,5 @@
 var sql_con = require('../conn');
-function getAllAction(req, res){
+function getAllAuction(req, res){
 	
 	var qS = "select * from `cmpe273project`.`auction`;";
 
@@ -17,7 +17,7 @@ function bidAuction(req, res){}
 
 function deleteAuction(req, res){}
 
-exports.getAllAction = getAllAction;
+exports.getAllAuction = getAllAuction;
 exports.getAuction = getAuction;
 exports.createAuction = createAuction;
 exports.bidAuction = bidAuction;
