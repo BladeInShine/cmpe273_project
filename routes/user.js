@@ -5,7 +5,10 @@ var passpport=require('passport');
  
 function root(req,res){
 	
-	res.render('home');
+	res.render('home',{
+		isAuthenticate:req.isAuthenticated()
+		
+	});
 	
 }
 
