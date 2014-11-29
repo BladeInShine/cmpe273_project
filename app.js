@@ -4,21 +4,28 @@
 
 var express = require('express');
 var passport = require('passport');
-
 var user = require('./routes/user');
 var cat = require('./routes/cat');
 var product = require('./routes/product');
 var auction = require('./routes/auction');
 var selling = require('./routes/selling');
 var review = require('./routes/review');
-
 var con = require('./conn');
 var passportlocal = require('passport-local');
 var bodyParser= require('body-parser');
 var cookieParser =require('cookie-parser');
 var expressSession = require('express-session');
 var app = express();
+var path = require('path');
 app.set('view engine','ejs');
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.configure(function(){
+	app.use(express.methodOverride());
+	app.use(express.bodyParser({keepExtensions:true,uploadDir:path.join(__dirname,'/public/images')}));
+
+	});
+
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(cookieParser());
 app.use(expressSession({
@@ -108,6 +115,9 @@ app.get('/auction', auction.getAllAuction);
 
 //get auction detail page
 app.get('/auction/:auctionid', auction.getAuction);
+
+//get auction creation page
+app.get('/cauction', auction.createAuctionPage);
 
 app.post('/auction', auction.createAuction);
 
