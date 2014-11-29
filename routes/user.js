@@ -5,9 +5,9 @@ var passpport=require('passport');
  
 function root(req,res){
 	
-	res.render('home',{
-		isAuthenticate:req.isAuthenticated()
-		
+	res.render('index',{
+		isAuthenticate:req.isAuthenticated()	,
+		user:req.user
 	});
 	
 }
@@ -39,7 +39,7 @@ function loginPost(req,res){
 		}	
     console.log("/ligin POST is requested.");
     console.log(req.user);
-    res.render('home',{
+    res.render('index',{
     	user: req.user,
 		isAuthenticate: req.isAuthenticated(),
 	});	
@@ -65,7 +65,7 @@ function logout(req,res){
 	} 
 
 	today = mm+'/'+dd+'/'+yyyy;
-	var Logsql = "update users set LogoutTime = '"+today+"' where email ='"+req.user.email+"';";
+	var Logsql = "update user set lastlogintime = '"+today+"' where email ='"+req.user.email+"';";
 	console.log(Logsql);
 	sql.fetchData(Logsql,function(error,callback){
 		console.log(Logsql);
@@ -74,7 +74,7 @@ function logout(req,res){
 	});
 	isAuthenticate: req.isAuthenticated(),
     req.logout();
-	res.redirect('/home');
+	res.redirect('/');
 }
 
  function passportAauth(username, password, done){
@@ -120,9 +120,7 @@ console.log(userSQL);
 //sql.fetchData(userSQL,function(error,callback){
 //
 //})
-res.render('login',{
-	isAuthenticate: false,
-	});
+res.render('login');
 }
 
 function profile(req,res){
@@ -130,15 +128,14 @@ if(!req.isAuthenticated())
 	 {
 		 res.redirect('/login');
 		}
-var reviewer=req.user.firstname;
-var rewSQL = "select * from reviews where reviewer='"+reviewer+"';";
 
+var rewSQL = "select * from review where user='"+req.user.email+"';";
+console.log("req.user"+req.user.lastname);
 connection.fetchData(rewSQL,function(error, rewData){
-	console.log(rewData);
-	isAuthenticate: req.isAuthenticated(),
-	res.render('userProfile',{
-		isAuthenticate: req.isAuthenticated(),
+	res.render('myebay',{
 	user:req.user,
+	isAuthenticate: req.isAuthenticated(),
+	
    rewData:rewData
  })
 	
@@ -146,7 +143,7 @@ connection.fetchData(rewSQL,function(error, rewData){
 
 
 })
-console.log(reviewer);
+
 
 }
 

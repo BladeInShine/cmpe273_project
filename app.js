@@ -47,6 +47,9 @@ passport.deserializeUser(user.deserializeUser);
 
 app.get('/', user.root);
 
+	
+	
+	
 //get login page
 app.get('/login', user.login);
 
@@ -68,6 +71,8 @@ app.post('/signup', user.signupPost);
 
 //get profile page
 app.get('/profile', user.profile);
+	
+
 
 //get all sellers, in json format TBD
 app.get('/seller', user.getAllSeller);

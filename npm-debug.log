@@ -1,0 +1,88 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'G:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'G:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'passport-locle' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose node symlink G:\Program Files\nodejs\\node.exe
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'passport-locle', null ]
+7 verbose cache add name=undefined spec="passport-locle" args=["passport-locle",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'passport-locle',
+8 verbose parsed url   path: 'passport-locle',
+8 verbose parsed url   href: 'passport-locle' }
+9 silly lockFile 538a508b-passport-locle passport-locle
+10 verbose lock passport-locle C:\Users\隽忱\AppData\Roaming\npm-cache\538a508b-passport-locle.lock
+11 silly lockFile 538a508b-passport-locle passport-locle
+12 silly lockFile 538a508b-passport-locle passport-locle
+13 verbose addNamed [ 'passport-locle', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile f8d7043e-passport-locle passport-locle@
+16 verbose lock passport-locle@ C:\Users\隽忱\AppData\Roaming\npm-cache\f8d7043e-passport-locle.lock
+17 silly addNameRange { name: 'passport-locle', range: '*', hasData: false }
+18 verbose request where is /passport-locle
+19 verbose request registry https://registry.npmjs.org/
+20 verbose request id b3442c76edc0c26e
+21 verbose url raw /passport-locle
+22 verbose url resolving [ 'https://registry.npmjs.org/', './passport-locle' ]
+23 verbose url resolved https://registry.npmjs.org/passport-locle
+24 verbose request where is https://registry.npmjs.org/passport-locle
+25 info trying registry request attempt 1 at 14:47:54
+26 http GET https://registry.npmjs.org/passport-locle
+27 http 404 https://registry.npmjs.org/passport-locle
+28 verbose headers { date: 'Tue, 25 Nov 2014 22:47:56 GMT',
+28 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 verbose headers   'content-type': 'application/json',
+28 verbose headers   'cache-control': 'max-age=0',
+28 verbose headers   'content-length': '52',
+28 verbose headers   'accept-ranges': 'bytes',
+28 verbose headers   via: '1.1 varnish',
+28 verbose headers   age: '0',
+28 verbose headers   'x-served-by': 'cache-lax1434-LAX',
+28 verbose headers   'x-cache': 'MISS',
+28 verbose headers   'x-cache-hits': '0',
+28 verbose headers   'x-timer': 'S1416955676.011870,VS0,VE73',
+28 verbose headers   'keep-alive': 'timeout=10, max=50',
+28 verbose headers   connection: 'Keep-Alive' }
+29 silly registry.get cb [ 404,
+29 silly registry.get   { date: 'Tue, 25 Nov 2014 22:47:56 GMT',
+29 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+29 silly registry.get     'content-type': 'application/json',
+29 silly registry.get     'cache-control': 'max-age=0',
+29 silly registry.get     'content-length': '52',
+29 silly registry.get     'accept-ranges': 'bytes',
+29 silly registry.get     via: '1.1 varnish',
+29 silly registry.get     age: '0',
+29 silly registry.get     'x-served-by': 'cache-lax1434-LAX',
+29 silly registry.get     'x-cache': 'MISS',
+29 silly registry.get     'x-cache-hits': '0',
+29 silly registry.get     'x-timer': 'S1416955676.011870,VS0,VE73',
+29 silly registry.get     'keep-alive': 'timeout=10, max=50',
+29 silly registry.get     connection: 'Keep-Alive' } ]
+30 silly lockFile f8d7043e-passport-locle passport-locle@
+31 silly lockFile f8d7043e-passport-locle passport-locle@
+32 error 404 404 Not Found: passport-locle
+32 error 404
+32 error 404 'passport-locle' is not in the npm registry.
+32 error 404 You should bug the author to publish it
+32 error 404 It was specified as a dependency of '273Project'
+32 error 404
+32 error 404 Note that you can also install from a
+32 error 404 tarball, folder, or http url, or git url.
+33 error System Windows_NT 6.2.9200
+34 error command "G:\\Program Files\\nodejs\\\\node.exe" "G:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "passport-locle"
+35 error cwd C:\Users\隽忱\Documents\GitHub\cmpe273_project
+36 error node -v v0.10.33
+37 error npm -v 1.4.28
+38 error code E404
+39 verbose exit [ 1, true ]
