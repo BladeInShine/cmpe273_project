@@ -19,7 +19,7 @@ res.render('login',{
 })}
 function loginfail(req,res){
 	
-	
+	res.render('loginfail');
 	
 	
 	
@@ -42,6 +42,7 @@ function loginPost(req,res){
     res.render('index',{
     	user: req.user,
 		isAuthenticate: req.isAuthenticated(),
+		
 	});	
 		
   
@@ -99,6 +100,7 @@ function signup(req,res){
 
 	res.render('signup',{
 		isAuthenticate: req.isAuthenticated(),
+		
 	});	
                              
 }
@@ -120,7 +122,10 @@ console.log(userSQL);
 //sql.fetchData(userSQL,function(error,callback){
 //
 //})
-res.render('login');
+res.render('login',{
+	error:error
+	
+});
 }
 
 function profile(req,res){
