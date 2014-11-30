@@ -137,7 +137,7 @@ app.get('/createreview/:sellingid', review.getReviewPage);
 app.post('/createreview', review.createReview);
 
 //get all reviews in Json format TBD
-app.get('/review', review.getReview);
+app.get('/review/:userid', review.getReview);
 
 app.post('/deletereview', review.deleteReview);
 
