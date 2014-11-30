@@ -6,7 +6,7 @@ var passpport=require('passport');
 function root(req,res){
 	
 	res.render('index',{
-		isAuthenticate:req.isAuthenticated()	,
+		isAuthenticate:req.isAuthenticated(),
 		user:req.user
 	});
 	
@@ -19,15 +19,15 @@ res.render('login',{
 })}
 function loginfail(req,res){
 	
-	
+	res.render('loginfail');
 	
 	
 	
 } 
 function signupfail(req,res){
+	console.log("inside signup failure");
 	
-	
-	
+	res.render('signupfail');
 	
 }
 
@@ -42,6 +42,7 @@ function loginPost(req,res){
     res.render('index',{
     	user: req.user,
 		isAuthenticate: req.isAuthenticated(),
+		
 	});	
 		
   
@@ -99,6 +100,7 @@ function signup(req,res){
 
 	res.render('signup',{
 		isAuthenticate: req.isAuthenticated(),
+		
 	});	
                              
 }
@@ -115,12 +117,13 @@ var last = req.body.lastname;
 
 var userSQL = "INSERT INTO user (`email`, `password`, `firstName`, `lastName` ) VALUES ('" + email + "', '" + pwd + "', '" + first + "', '" + last +  "');";
 sql.fetchData(userSQL,function(error,callback){
-console.log(userSQL);
-})
+console.log(callback);
+console.log("error:"+error);
 //sql.fetchData(userSQL,function(error,callback){
 //
 //})
-res.render('login');
+res.render('/login');
+})
 }
 
 function profile(req,res){
