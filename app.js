@@ -110,6 +110,9 @@ app.get('/selling/:sellingid', selling.getSelling);
 //get all sellings, in json format TBD
 app.get('/selling', selling.getAllSelling);
 
+//get selling creation page
+app.get('/cselling', selling.createSellingPage);
+
 app.post('/selling', selling.createSelling);
 
 app.post('/deleteselling', selling.deleteSelling);
