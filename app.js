@@ -71,6 +71,8 @@ app.post('/signup', user.signupPost);
 
 //get profile page
 app.get('/profile', user.profile);
+
+app.get('/purhis', user.purHis);
 	
 
 
@@ -84,7 +86,7 @@ app.get('/customer', user.getAllCustomer);
 //get a page contains all cats and some hot sellings and auctions, can be presented as home page TBD
 app.get('/cat/', cat.getAllCat);
 
-//get a page contains all sellings and auctions under this cat
+//get a page contains all products under this cat
 app.get('/cat/:catname', cat.getCat);
 
 app.post('/cat', cat.createCat);
@@ -95,7 +97,7 @@ app.post('/deletecats', cat.deleteCat);
 //get all products, in json format TBD
 app.get('/product', product.getAllProduct);
 
-//app.get('/product/:productid', product.getProduct);
+app.get('/product/:productid', product.getProduct);
 
 app.post('/product', product.createProduct);
 
@@ -109,6 +111,9 @@ app.get('/selling/:sellingid', selling.getSelling);
 
 //get all sellings, in json format TBD
 app.get('/selling', selling.getAllSelling);
+
+//get selling creation page
+app.get('/cselling', selling.createSellingPage);
 
 app.post('/selling', selling.createSelling);
 
@@ -126,7 +131,10 @@ app.get('/cauction', auction.createAuctionPage);
 
 app.post('/auction', auction.createAuction);
 
-app.post('/bidauction', auction.bidAuction);
+app.get('/bidauction/:auctionid', auction.bidAuction);
+
+//get all bids under one auction
+app.get('/bid/:auctionid', auction.getBid);
 
 app.post('/deleteAuction', auction.deleteAuction);
 

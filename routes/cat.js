@@ -1,74 +1,66 @@
-/**
- * New node file
- */
-/**
- * New node file
- */
-
-var ejs = require("ejs");
-var mysql = require('../conn');
+var ejs = require('ejs');
+var sql = require('../conn');
+var connection= require('../conn');
+var passpport=require('passport');
 
 
 function getAllCat(req,res) {
 
-	ejs.renderFile('./views/signin.ejs',function(err, result) {
-	   // render on success
-	   if (!err) {
-	            res.end(result);
-	   }
-	   // render or error
-	   else {
-	            res.end('An error occurred');
-	            console.log(err);
-	   }
-   });
 }
 
 function getCat(req,res) {
+var catname=req.param('catname');
+console.log("catname:"+catname);
 
-	ejs.renderFile('./views/signin.ejs',function(err, result) {
-	   // render on success
-	   if (!err) {
-	            res.end(result);
-	   }
-	   // render or error
-	   else {
-	            res.end('An error occurred');
-	            console.log(err);
-	   }
-   });
+var pdtSQL="select * from product where cat='"+catname+"';";
+var catQuery= "select * from cat";
+sql.fetchData(catQuery, function(error, cats){
+
+	sql.fetchData(pdtSQL,function(error,result){
+	
+		res.render('oneCat',{
+			isAuthenticate: req.isAuthenticated(),
+			pdts:result,
+			catname:catname,
+		    cat:cats,
+		    user:req.user
+		
+	})
+	
+	
+	
+});
+});
+		
+
+
 }
 
 function createCat(req,res) {
-
-	ejs.renderFile('./views/signin.ejs',function(err, result) {
-	   // render on success
-	   if (!err) {
-	            res.end(result);
-	   }
-	   // render or error
-	   else {
-	            res.end('An error occurred');
-	            console.log(err);
-	   }
-   });
+	console.log("create cat");
+	var name = req.param('catname');
+	var insertSQL = "INSERT INTO cat (catname) VALUES('"+name+"')";
+	var selectSQL = "select * from cat where UPPER(categoryname) = UPPER('"+name+"')";
+	console.log("create cat");
+	
+	sql.fetchData(selectSQL, function(error, result){
+		sql.fetchData(insertSQL, function(error, result){
+			res.redirect('/');	
+		});
+	});	
 }
 
 function deleteCat(req,res) {
-
-	ejs.renderFile('./views/signin.ejs',function(err, result) {
-	   // render on success
-	   if (!err) {
-	            res.end(result);
-	   }
-	   // render or error
-	   else {
-	            res.end('An error occurred');
-	            console.log(err);
-	   }
-   });
+	var name = req.param('catname');
+	var selectSQL = "select * from cat where UPPER(catname) = UPPER('"+name+"')";
+	var deleteSQL = "DELETE FROM cat WHERE catname = '"+name+"'";
+	sql.fetchData(selectSQL, function(error, result){
+		sql.fetchData(deleteSQL, function(error, result){
+			res.redirect('/');	
+		});
+	});	
+	
 }
-
 exports.getAllCat=getAllCat;
 exports.getCat=getCat;
 exports.createCat=createCat;

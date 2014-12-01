@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)https://twitter.com/signup -->
+<html lang="en" data-scribe-reduced-action-queue="true"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="https://abs.twimg.com/a/1417027384/css/t1/twitter_core.bundle.css">
+    <link rel="stylesheet" href="https://abs.twimg.com/a/1417027384/css/t1/twitter_logged_out.bundle.css">
+
+	
+      <title>Create a Selling</title>
+      
+  </head>
+  <body class="three-col logged-out phx-signup" data-fouc-class-names="swift-loading" dir="ltr">
+
+    <div id="doc" class="route-signup">
+        
+
+        <div id="page-outer">
+          <div id="page-container" class="AppContent wrapper wrapper-signup">
+ 
+<div class="page-canvas">
+  <div class="signup-wrapper">
+
+          <h1>
+            Create Your Selling.
+          </h1>
+
+    <form id="phx-signup-form" method="POST" action="/selling" class="t1-form" enctype="multipart/form-data">
+
+  <div class="textbox">
+
+      <div class="prompt name">
+  <label for="first-name" class="t1-label field-name">Product name</label>
+  <div class="field" data-fieldname="name">
+    
+    <input id="productname" type="text" autocomplete="off"  name="productname" maxlength="20" aria-required="true">
+  </div>
+</div>
+
+<div class="prompt name">
+  <label for="last-name" class="t1-label field-name">Description</label>
+  <div class="field" data-fieldname="name">
+    
+    <input id="description" type="text" autocomplete="off" name="des" maxlength="20" aria-required="true" >
+  </div>
+</div>
+
+
+
+<div>
+Price
+  <div class="field" data-fieldname="zipcode">
+    
+    <input id="zipcode" type="text" autocomplete="off" name="price" aria-required="true">
+  </div>
+    
+</div>
+
+
+<div>
+Add Quantity
+  <div class="field" data-fieldname="zipcode">
+    
+    <input id="zipcode" type="text" autocomplete="off" name="quantity" aria-required="true">
+  </div>
+    
+</div>
+
+
+<br>
+Category
+<select name="cat" size="1">
+        <%for(var i = 0; i < cats.length; i ++){%>
+                <option><%= cats[i].catname%></option>
+        <%}%>
+</select>
+<br>
+<br>
+Condition
+<select name="condition" size="1">
+       <option>New</option>
+       <option>Used</option>
+       <option>Refurbished</option>
+    </select>
+<br>
+<br>
+<p>Uplaod Image</p>
+<input name="image" type="file" />
+<br>
+<br>
+  <div class="doit">
+
+    <div class="sign-up-box">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+       
+    </div>
+
+  </div>
+</form>
+
+  </div>
+</div>
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+  
+  
+
+     
+
+  
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  
+
+
+   
+
+
+
+
+
+
+
+
+    
+
+    
+    
+  
+
+  
+
+  
+
+    
+  
+
+  
+    
+
+</body></html>

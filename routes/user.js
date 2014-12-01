@@ -2,32 +2,38 @@ var ejs = require('ejs');
 var sql = require('../conn');
 var connection= require('../conn');
 var passpport=require('passport');
- 
+var cat=require('./cat'); 
 function root(req,res){
-	
+  
+	var catQuery= "select catname from cat";
+sql.fetchData(catQuery, function(error, result){
+		
+		
 	res.render('index',{
-		isAuthenticate:req.isAuthenticated()	,
-		user:req.user
+		isAuthenticate:req.isAuthenticated(),
+		user:req.user,
+		cat:result
 	});
-	
+});
 }
 
 function login (req,res) {
+	
 res.render('login',{
 	isAuthenticate: req.isAuthenticated(),
 	user:req.user,
 })}
 function loginfail(req,res){
 	
-	
+	res.render('loginfail');
 	
 	
 	
 } 
 function signupfail(req,res){
+	console.log("inside signup failure");
 	
-	
-	
+	res.render('signupfail');
 	
 }
 
@@ -39,11 +45,14 @@ function loginPost(req,res){
 		}	
     console.log("/ligin POST is requested.");
     console.log(req.user);
+    var catQuery= "select * from cat";
+    sql.fetchData(catQuery, function(error, result){
     res.render('index',{
     	user: req.user,
 		isAuthenticate: req.isAuthenticated(),
+		cat:result
 	});	
-		
+    })
   
 }
 
@@ -99,6 +108,7 @@ function signup(req,res){
 
 	res.render('signup',{
 		isAuthenticate: req.isAuthenticated(),
+		
 	});	
                              
 }
@@ -115,12 +125,13 @@ var last = req.body.lastname;
 
 var userSQL = "INSERT INTO user (`email`, `password`, `firstName`, `lastName` ) VALUES ('" + email + "', '" + pwd + "', '" + first + "', '" + last +  "');";
 sql.fetchData(userSQL,function(error,callback){
-console.log(userSQL);
-})
+console.log(callback);
+console.log("error:"+error);
 //sql.fetchData(userSQL,function(error,callback){
 //
 //})
-res.render('login');
+res.render('/login');
+})
 }
 
 function profile(req,res){

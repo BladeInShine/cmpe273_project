@@ -1,0 +1,19 @@
+#BidHistoryFrame { padding:5px;background-color:#eef7ff;border:1px solid #336699;overflow:auto; }
+#BidHistoryBody { background-color:#ffffff; }
+.bidHistoryShowcase { padding:10px;width:35px;font-family:Verdana;font-size:10px; }
+.makeBorder { border-bottom-color:#336699;border-bottom-style:dotted;border-bottom-width:thin; }
+td.bidHistoryHeading { font-family:Verdana;font-size:10px;color:#336699; }
+td.bidHistoryHeadingWithBold { font-family:Verdana;font-size:10px;color:#336699;font-weight:bold; }
+td.bidHistoryText { font-family:Verdana;font-size:10px;color:#000000; }
+td.bidHistoryTextWithBold { font-family:Verdana;font-size:10px;color:#000000;font-weight:bold; }
+div.bidHistoryBalloon { position:absolute;z-index:1; }
+div.bidHistoryBalloon td.bidHistoryArrow { vertical-align:top;position:relative;z-index:2; }
+div.bidHistoryBalloon div.bidHistoryLeft { display:block;top:10px;left:1px;position:relative; }
+div.bidHistoryBalloon div.bidHistoryRight { display:block;top:15px;right:1px;position:relative; }
+td.bidHistoryBalloon { position:relative; }
+td.bidHistoryBalloon div.bidHistoryContent { position:relative; }
+td.bidHistoryBalloon div.bidHistoryShadow { top:5px;left:5px;position:absolute;z-index:1;background-color:#000000; }
+td.bidHistoryBalloon div.bidHistoryFrame { position:relative;z-index:1;overflow:auto; }
+
+
+/* b=17270647 */
