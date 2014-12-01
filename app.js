@@ -84,7 +84,7 @@ app.get('/customer', user.getAllCustomer);
 //get a page contains all cats and some hot sellings and auctions, can be presented as home page TBD
 app.get('/cat/', cat.getAllCat);
 
-//get a page contains all sellings and auctions under this cat
+//get a page contains all products under this cat
 app.get('/cat/:catname', cat.getCat);
 
 app.post('/cat', cat.createCat);
@@ -130,6 +130,9 @@ app.get('/cauction', auction.createAuctionPage);
 app.post('/auction', auction.createAuction);
 
 app.post('/bidauction', auction.bidAuction);
+
+//get all bids under one auction
+app.get('/bid/:auctionid', auction.getBid);
 
 app.post('/deleteAuction', auction.deleteAuction);
 
