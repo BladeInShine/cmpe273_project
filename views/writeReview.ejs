@@ -82,27 +82,14 @@ vjo.dsf.cookie.VjCookieJar.sCookieDomain = '.ebay.com';vjo.dsf.cookie.VjCookieJa
 			recogoff:0, jsdebug:0, raptor:0, catService:0, sandbox:0, emp:0, no_akamai_autocomplt:"true", ac1:0, ac2:0, ac3:0, ac4:0, AUTOCOMPLETE_HELP:0, nodoodleon980:0, rtmftr:0, actVer:0, actDebug:0, alerts:0, alertsOff:0, hideMobile:0, survey:0, telDE:0, langSwitch:0, pool:0, SHOW_MYCOLL:"true"
 		};
 	}
-</script><script type="text/javascript">
-if (typeof GH != "undefined" && GH) {GH_config = {"siteId":"0","geoLang":"[]",sin:1,ct:0,pageId:3692,notifCfg:null,catURL:'http://include.ebaystatic.com/categoryjs/110/en_US_MAIN/category_110en_US_MAIN0.js',impId:'Adr/Xcjg*'};GH.init();}</script><script type="text/javascript">var RoverDomainBaseUrl = 'http://rover.ebay.com';var svrGMT = 1417246326790;</script></div><div></div><div class="breadCrumbDiv" id="memberBadgeId"><span class="bc-w"><a href="http://www.ebay.com">Home</a><b class="bc-ar">&gt;</b><a href="http://hub.ebay.com/community">Community</a><b class="bc-ar">&gt;</b><a href="http://pages.ebay.com/services/forum/feedback.html">Feedback forum</a><b class="bc-ar">&gt;</b><span class="bc-sel">Feedback profile</span></span></div></div>
+</script>
+
 					<div class="AreaNavigation" id="AreaNavigation"></div>
 					<div class="AreaTitle" id="AreaTitle"><div></div></div>
 					<div class="PageLevelMessageArea" id="PageLevelMessageArea"></div>
 					<div class="CentralArea" id="CentralArea">
 						<div>
-							<div class="marginbottom5">
-								<div>
-									<div class="pt-c pt-rl pt-mar">
-										<table cellpadding="0" cellspacing="0" width="100%">
-											<tr>
-												<td valign="bottom"><h1 class="pt-ct pt-tl">Feedback profile</h1></td>
-												<td width="1%" align="right" valign="bottom"><div class="pt-apd">
-												<span></span>
-												</div></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-							</div>
+							
 							<div>
 								<table width="100%">
 									<tr>
@@ -112,15 +99,31 @@ if (typeof GH != "undefined" && GH) {GH_config = {"siteId":"0","geoLang":"[]",si
 													<td valign="top"><div class="fc-cnt">
 														<table border="0" cellpadding="0" cellspacing="0" width="100%">
 															<tr>
-																
+																<td width="5%" height="50%" rowspan="4">
+																	<table class="imageTable">
+																		<tr>
+																			<td align="center">
+																				<%- picin %>
+																				
+																			</td>
+																		</tr>
+																	</table>
+																</td>
 																<td id="memberBadgeId">
 																	<div class="mbg">
-																		<a title="Member id paypal_digital_gifts" href="http://myworld.ebay.com/paypal_digital_gifts"><b class="g-hdn">Member id </b><span class="mbg-nw"><%- uname %></span></a> 
+																		<%- pname %> 
 																		
 																	</div>
 																</td>
 															</tr>
-															
+															<tr>
+																<td>
+																	<div class="ds2arial13color7">
+																		<span class="ds2arial13color7">Sold by: </span>
+																		<span class="ds2arial13color3"><%- seller %></span>
+																	</div>
+																</td>
+															</tr>
 															<tr>
 																<td colspan="2"><img src="http://q.ebaystatic.com/aw/pics/s.gif" width="20px" alt=""></td>
 															</tr>
@@ -141,16 +144,24 @@ if (typeof GH != "undefined" && GH) {GH_config = {"siteId":"0","geoLang":"[]",si
 					<div>
 					
 					<div style="margin-top:0px">
-						<table border="0" cellpadding="0" cellspacing="0" width="100%" class="FbOuterYukon">
-							<tr class="info90daysMsg">
-								<td class="header" width="20">&nbsp;</td>
-								<td width="60%" class="header">Feedback</td>
-								<td width="25%" class="header">From</td>
-								
-							</tr>
+						
+						
+						<form action="/createreview" method="post">
+							<%- sidin %>
+							<%- userin %>
+							Rating:
+							<br>
+							<input type="radio" name="rate" value=1> <img src="http://q.ebaystatic.com/aw/pics/icon/iconPos_16x16.gif" height="16" width="16"> positive
+							<br>
+							<input type="radio" name="rate" value=0> <img src="http://q.ebaystatic.com/aw/pics/icon/iconNeu_16x16.gif" height="16" width="16"> neutral
+							<br>
+							<input type="radio" name="rate" value=2> <img src="http://q.ebaystatic.com/aw/pics/icon/iconNeg_16x16.gif" height="16" width="16"> negative
 							
-							<%- review %>
-						</table>
+							<br>
+							<textarea cols="40" rows="8" class="review-textarea" autocomplete="off" data-component-bound="true" name="review">Write review here</textarea>
+							<br>
+							<input type="submit" value="Submit">
+						</form>
 						<br><br>
 						
 						
