@@ -71,6 +71,8 @@ app.post('/signup', user.signupPost);
 
 //get profile page
 app.get('/profile', user.profile);
+
+app.get('/purhis', user.purHis);
 	
 
 
@@ -129,7 +131,7 @@ app.get('/cauction', auction.createAuctionPage);
 
 app.post('/auction', auction.createAuction);
 
-app.post('/bidauction', auction.bidAuction);
+app.get('/bidauction/:auctionid', auction.bidAuction);
 
 //get all bids under one auction
 app.get('/bid/:auctionid', auction.getBid);
