@@ -168,7 +168,30 @@ function getAllCustomer(){
 	
 	
 }
-
+function purHis(req,res){
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var user=req.user.email;
+	var hisSQL="select owner,date,name,description,price from cmpe273project.user join cmpe273project.buying join cmpe273project.selling join cmpe273project.product where user.email=buying.buyer and buying.selling = selling.id and selling.product =product.id and user.email='"+user+"';";
+	
+    sql.fetchData(hisSQL,function(error,result){
+    	
+    	res.render('purHis',{
+    		
+    		data:result,
+    		user:req.user,
+    		
+    		
+    	})
+    	
+    	
+    	
+    })
+	
+	
+}
 
 function serializeUser(user,done){
 	done(null,user.email);
@@ -200,3 +223,4 @@ exports.profile=profile;
 exports.getAllSeller=getAllSeller;
 exports.getAllCustomer=getAllCustomer;
 exports.logout=logout;
+exports.purHis=purHis;
