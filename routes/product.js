@@ -4,38 +4,32 @@
 /**
  * New node file
  */
-var ejs = require("ejs");
-var mysql = require('../conn');
+var ejs = require('ejs');
+var sql = require('../conn');
+var connection= require('../conn');
+var passpport=require('passport');
 
 
 function getAllProduct(req,res) {
 
-	ejs.renderFile('./views/signin.ejs',function(err, result) {
-	   // render on success
-	   if (!err) {
-	            res.end(result);
-	   }
-	   // render or error
-	   else {
-	            res.end('An error occurred');
-	            console.log(err);
-	   }
-   });
+	
 }
 
 function getProduct(req,res) {
-
-	ejs.renderFile('./views/signin.ejs',function(err, result) {
-	   // render on success
-	   if (!err) {
-	            res.end(result);
-	   }
-	   // render or error
-	   else {
-	            res.end('An error occurred');
-	            console.log(err);
-	   }
-   });
+	var prd=req.param('productid');
+	var pdtSQL="select * from product where id='"+prd+"';";
+	sql.fetchData(pdtSQL,function(error,result){
+		console.log(result);
+		res.render('oneProduct',{
+			isAuthenticate: req.isAuthenticated(),
+			pdt:result,
+			
+		
+	})
+	
+	})
+	
+	
 }
 
 function createProduct(req,res) {

@@ -97,7 +97,7 @@ app.post('/deletecats', cat.deleteCat);
 //get all products, in json format TBD
 app.get('/product', product.getAllProduct);
 
-//app.get('/product/:productid', product.getProduct);
+app.get('/product/:productid', product.getProduct);
 
 app.post('/product', product.createProduct);
 

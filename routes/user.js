@@ -2,17 +2,23 @@ var ejs = require('ejs');
 var sql = require('../conn');
 var connection= require('../conn');
 var passpport=require('passport');
- 
+var cat=require('./cat'); 
 function root(req,res){
-	
+  
+	var catQuery= "select catname from cat";
+sql.fetchData(catQuery, function(error, result){
+		
+		
 	res.render('index',{
 		isAuthenticate:req.isAuthenticated(),
-		user:req.user
+		user:req.user,
+		cat:result
 	});
-	
+});
 }
 
 function login (req,res) {
+	
 res.render('login',{
 	isAuthenticate: req.isAuthenticated(),
 	user:req.user,
@@ -39,12 +45,14 @@ function loginPost(req,res){
 		}	
     console.log("/ligin POST is requested.");
     console.log(req.user);
+    var catQuery= "select * from cat";
+    sql.fetchData(catQuery, function(error, result){
     res.render('index',{
     	user: req.user,
 		isAuthenticate: req.isAuthenticated(),
-		
+		cat:result
 	});	
-		
+    })
   
 }
 

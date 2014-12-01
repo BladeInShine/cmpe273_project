@@ -26,7 +26,7 @@ function createSelling(req, res){
 	var pictureUrl = req.files.image.path.substring(42,len);
 	var name = req.body.productname; 
 	var des = req.body.des;
-	var owner = "a";
+	var owner = 1;
 	var cat = req.body.cat;
 	var condition = req.body.condition;
 	var quantity = req.body.quantity;
@@ -50,16 +50,16 @@ function createSelling(req, res){
 		var date = month + "/" + day + "/" + year;
 		
 		var startDate = date;
-		var seller = "a";
+		var seller = 1;
 		//var startPrice = req.body.startprice;
-		var addPrice = req.body.addprice;
+		var price = req.body.price;
 		var inProgress = "true";
 		
-		var qS = "INSERT INTO `cmpe273project`.`selling` (`product`, `price`,`startdate`, `quantity`) VALUES ('" + productId + "', '" + addPrice + "','" + startDate + "', '" + quantity + "');";
+		var qS = "INSERT INTO `cmpe273project`.`selling` (`product`, `price`,`startdate`, `quantity`) VALUES ('" + productId + "', '" + price + "','" + startDate + "', '" + quantity + "');";
 
 		sql_con.insert(qS);
 			
-		res.render('auction',{email : "a", productname: name, currentprice: startPrice, condition: condition, addprice: addPrice, bidnum: 0, pictureurl: pictureUrl});
+		res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl});
 		//res.render('auction');
 	});
 	
