@@ -10,6 +10,7 @@ var product = require('./routes/product');
 var auction = require('./routes/auction');
 var selling = require('./routes/selling');
 var review = require('./routes/review');
+var search = require('./routes/search');
 var con = require('./conn');
 var passportlocal = require('passport-local');
 var bodyParser= require('body-parser');
