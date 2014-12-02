@@ -58,9 +58,17 @@ function createSelling(req, res){
 		var qS = "INSERT INTO `cmpe273project`.`selling` (`product`, `price`,`startdate`, `quantity`) VALUES ('" + productId + "', '" + price + "','" + startDate + "', '" + quantity + "');";
 
 		sql_con.insert(qS);
+		var qS3 = "SELECT * FROM `cmpe273project`.`selling` WHERE product = '" + productId + "' and price = '" + price + "' and startdate = '" + startDate + "' and quantity = '" + quantity + "';";
+
+		sql_con.fetchData(qS3, function(error, rows2){
 			
-		res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl});
-		//res.render('auction');
+			var sellingId = parseInt(rows2[0].id);
+			
+			res.redirect('/selling/' + sellingId);
+			//res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl, productid: productId});
+		});
+			
+		
 	});
 	
 
@@ -68,9 +76,38 @@ function createSelling(req, res){
 
 function deleteSelling(req, res){}
 
-function buyProduct(req,res){}
+function buyProduct(req,res){
+	var pictureUrl = req.query.picUrl;
+	var price = req.query.p;
+	res.render('sell',{pic:pictureUrl,price:price});
+}
 
-function getSelling(req,res){}
+function getSelling(req,res){
+	console.log("sellinggggggg");
+	var sellingId = req.params.sellingid;
+	
+	var qS = "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
+
+	sql_con.fetchData(qS, function(error, rows){
+		
+		if(rows != null && rows.length > 0){
+			
+			qS2 = "SELECT * FROM `cmpe273project`.`product` WHERE id = '" + rows[0].product + "';";
+			
+			sql_con.fetchData(qS2, function(error, rows2){
+				
+				var quantity = rows[0].price;
+				var condition = rows2[0].condi;
+				var name = rows2[0].name;
+				var price = rows[0].price;
+				var pictureUrl = rows2[0].pictureurl;
+			
+				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl});
+			});
+		}
+
+	});
+}
 
 function createSellingPage(req,res){
 	if(false){res.redirect('/login');}
