@@ -149,6 +149,8 @@ app.get('/review/:userid', review.getReview);
 
 app.post('/deletereview', review.deleteReview);
 
+app.get('/search/:keyword', search.search);
+
 
 app.get('');
 
