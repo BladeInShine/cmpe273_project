@@ -10,6 +10,8 @@ var product = require('./routes/product');
 var auction = require('./routes/auction');
 var selling = require('./routes/selling');
 var review = require('./routes/review');
+var search = require('./routes/search');
+var cart = require('./routes/cart');
 var con = require('./conn');
 var passportlocal = require('passport-local');
 var bodyParser= require('body-parser');
@@ -149,7 +151,13 @@ app.get('/review/:userid', review.getReview);
 
 app.post('/deletereview', review.deleteReview);
 
+
 app.get('/search/:keyword', search.search);
+
+
+app.get('/cart/:userid', cart.getCart);
+
+app.get('/delitem/:cartid', cart.delItem);
 
 
 app.get('');
