@@ -47,6 +47,10 @@ function loginPost(req,res){
     console.log(req.user);
     var catQuery= "select * from cat";
     sql.fetchData(catQuery, function(error, result){
+    	if(result.length==0)
+    		{
+    		res.redirect("loginfial");
+    		}
     res.render('index',{
     	user: req.user,
 		isAuthenticate: req.isAuthenticated(),
@@ -91,16 +95,17 @@ function logout(req,res){
 	var qS = "SELECT * FROM user where email=" + "'"+username + "';";
     
 	sql.fetchData(qS, function(error, rows){
+		if(rows.length==0)
+		{
+			done(null,null);
+			
+		}
 		
-		
-		if(rows[0].password == password)
+		else (rows[0].password == password)
 		{
 			done(null, {email: rows[0].email, firstname: rows[0].firstname, lastname: rows[0].lastname});
 		}
-		else
-		{
-			done(null,null);
-		}
+		
 	});
 }
   
@@ -129,14 +134,14 @@ console.log("address"+address);
 console.log("city"+city);
 console.log("state"+state);
 console.log("zip"+zip);
-var userSQL = "INSERT INTO user (`email`, `password`, `firstName`, `lastName` ) VALUES ('" + email + "', '" + pwd + "', '" + first + "', '" + last +  "');";
+var userSQL = "INSERT INTO user (`email`, `password`, `firstName`, `lastName`,`address`,`city`,`state`,`zip` ) VALUES ('" + email + "', '" + pwd + "', '" + first + "', '" + last + "','"+ address +"','"+city+"','"+state+"','"+zip+"');";
 sql.fetchData(userSQL,function(error,callback){
 console.log(callback);
 console.log("error:"+error);
 //sql.fetchData(userSQL,function(error,callback){
 //
 //})
-res.render('/login');
+res.render('login');
 })
 }
 
@@ -206,14 +211,15 @@ function serializeUser(user,done){
  
 function deserializeUser(email,done){
   var qS = "SELECT * FROM user where email = '" + email + "';";
-   
+  
+		
 	sql.fetchData(qS, function(error, rows){
 	   		done(null, {email: rows[0].email, firstname: rows[0].firstName, lastname: rows[0].lastName});
 		
 				})
 
-		}
-
+		
+}
 
 exports.root=root;
 exports.deserializeUser = deserializeUser;
