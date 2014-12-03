@@ -212,7 +212,9 @@ width:35%;
  	
 	<div id="LeftSummaryPanel" class="lsp-c lsp-cRight  lsp-cL500  lsp-de">
 		<div class="is " style="overflow:hidden;">
-	<form action="http://offer.ebay.com/ws/eBayISAPI.dll?MakeBid&fromPage=2047675&item=191427500712&pt=PCA_Mice_Trackballs&fb=2" method="post" name="viactiondetails">
+	<!--	<form action="http://offer.ebay.com/ws/eBayISAPI.dll?MakeBid&fromPage=2047675&item=191427500712&pt=PCA_Mice_Trackballs&fb=2" method="post" name="viactiondetails">    -->
+	<form action="/buyproduct?productId=<%=productId%>&sellingId=<%=sellingId%>"  method="post" name="viactiondetails">
+	
  		<div class="nonActPanel ">
 		<h2 class="g-hdn">Item Information</h2>
 		<div>
@@ -223,13 +225,60 @@ width:35%;
 
 <!-- volume pricing -->
 			<!-- volume pricing ends -->
-			<div class="u-cb spcr a1"></div>
+	<!--		<div class="u-cb spcr a1"></div>   -->
 						
 						
 						
-<div class="u-cb spcr "></div>
+<!--  <div class="u-cb spcr "></div>  -->
 				<div class="u-cb spcr vi-compat-hide"></div>
 			<div class="u-cb" style="height:2px"></div>
+			
+			<div>
+	<div class="u-flL lable quantity"><label for="qtyTextBox">Quantity:</label></div>
+	<div>		
+		<div class="u-flL qtyCntVal vi-bboxrev-posabs vi-bboxrev-dsplinline">
+			<div id="w1-15-_errIcon" class="errorIcon" style="display: none;"><!-- err_qty_icon -->
+				<img src="http://ir.ebaystatic.com/pictures/aw/pics/s.gif" class="errorimg" alt="Error icon">
+			</div>
+			
+			<input class="qtyInput" type="text" autocomplete="off" size="4" value="1" name="quantity" id="qtyTextBox" isvalid="true">
+			
+			<span class="qtyTxt vi-bboxrev-dsplblk vi-newVpQtyCls" style="">
+				<span id="qtySubTxt">
+						<span class="">
+						More than 10 available</span>
+					</span>
+				<span class="vi-qty-vert-algn vi-qty-slash"> / </span>
+        <span class="vi-qtyS vi-bboxrev-dsplblk vi-qty-vert-algn vi-qty-pur-lnk">
+			<a href="http://offer.ebay.com/ws/eBayISAPI.dll?ViewBidsLogin&amp;item=131308983991&amp;rt=nc&amp;_trksid=p2047675.l2564">23 sold</a></span>
+		</span>
+		
+				
+			
+			
+			<div id="w1-15-_errMsg" class="u-cb err" style="display: none;"> </div>
+			<!-- generating Id's array -->
+			<div class="u-dspn"> 
+				<b id="w1-15_qtyErr_0">Please enter a quantity of $qty_dummy$ or less</b>
+				<b id="w1-15_qtyErr_1">Please enter a quantity of 1</b>
+				<b id="w1-15_qtyErr_2">Purchases are limited to $qty_dummy$ per buyer</b>
+				<b id="w1-15_qtyErr_3">Please enter quantity of 1 or more</b>
+				<b id="w1-15_qtyErr_4">Please enter a lower number</b>
+				<b id="w1-15_qtyErr_5">Choose quantity that is less than $qty_dummy1$ or equal to $qty_dummy$</b>
+				<b id="w1-15_qtyErr_6">You can only choose quantity that is equal to $qty_dummy$</b>
+			</div>
+		</div>
+	</div>
+	<div class="u-cb spcr"></div>
+	</div>
+			
+			
+			
+			
+			
+			
+			
+			
 		</div>
 		<div class="c-std vi-ds3cont-box-marpad">
 		<div class="actPanel  vi-noborder ">	
@@ -261,8 +310,10 @@ width:35%;
 				<div class="u-flL ">
 					<!-- inserting code for another button -->
  						<!-- code ends  -->
-					<a role="button" _sp="p2047675.l4023" id="bidBtn_btn" style="" class="btn btn-prim  vi-VR-btnWdth-XL" href="http://localhost:3000/buyproduct?picUrl=<%=pictureurl%>&p=<%=price%>" vib="vib" rel="nofollow">
-							Add to cart</a>
+ 						
+			<!--		<a role="button" _sp="p2047675.l4023" id="bidBtn_btn" style="" class="btn btn-prim  vi-VR-btnWdth-XL" href="http://localhost:3000/buyproduct?picUrl=<%=pictureurl%>&p=<%=price%>" vib="vib" rel="nofollow">Add to cart</a>   -->
+			            <button type = "submit" _sp="p2047675.l4023" id="bidBtn_btn" style="" class="btn btn-prim  vi-VR-btnWdth-XL" vib="vib" rel="nofollow">Add to cart</button>
+							
 						</div>
 				<!-- ShowStatusOnLoad -->
 				</div>

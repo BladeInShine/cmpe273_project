@@ -77,9 +77,15 @@ function createSelling(req, res){
 function deleteSelling(req, res){}
 
 function buyProduct(req,res){
-	var pictureUrl = req.query.picUrl;
-	var price = req.query.p;
-	res.render('sell',{pic:pictureUrl,price:price});
+	var userId = 1;
+	var productId = req.query.productId;
+	var sellingId = req.query.sellingId;
+	var quantity = req.body.quantity;
+	var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "');";
+	
+	sql_con.insert(qS);
+	
+	res.redirect('/cart/'+ userId);
 }
 
 function getSelling(req,res){
@@ -96,13 +102,13 @@ function getSelling(req,res){
 			
 			sql_con.fetchData(qS2, function(error, rows2){
 				
-				var quantity = rows[0].price;
+				var productId = rows[0].product;
 				var condition = rows2[0].condi;
 				var name = rows2[0].name;
 				var price = rows[0].price;
 				var pictureUrl = rows2[0].pictureurl;
 			
-				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl});
+				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId});
 			});
 		}
 
