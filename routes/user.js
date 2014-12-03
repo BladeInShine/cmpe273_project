@@ -121,8 +121,14 @@ var email = req.body.email;
 var pwd = req.body.password;  
 var first = req.body.firstname;
 var last = req.body.lastname;
-
-
+var address=req.body.address;
+var city=req.body.city;
+var state=req.body.state;
+var zip=req.body.zip;
+console.log("address"+address);
+console.log("city"+city);
+console.log("state"+state);
+console.log("zip"+zip);
 var userSQL = "INSERT INTO user (`email`, `password`, `firstName`, `lastName` ) VALUES ('" + email + "', '" + pwd + "', '" + first + "', '" + last +  "');";
 sql.fetchData(userSQL,function(error,callback){
 console.log(callback);
