@@ -23,7 +23,17 @@
 	<div id="Body">
 		<div id="Top">
 			<div id="TopPanel">
-				<span id="ph_TopPanelDF"></span><span id="ph_TopPanelDFItemCount"></span></div>
+				<% if(isAuthenticate)
+		{%>
+	<div id="gh-top" style="left:250px"><ul id="gh-topl" ><li class="gh-t gh-spr" id="gh-eb-u"><span id="gh-ug" class="gh-ug-guest" aria-expanded="false">Hi! <a href="/profile" _sp="m570.l1524"><%=user.email%></a></span></li><div class="gh-menu"><a href="/profile" class="gh-eb-li-a">My eBay</a><li class="gh-t gh-spr " id="gh-p-3"><a href="/logout" _sp="m570.l1545" class="gh-p">Log Out</a></li>
+</ul>
+
+<%}
+else{%>
+<div id="gh-top" style="left:250px"><ul id="gh-topl"><li class="gh-t gh-spr" id="gh-eb-u"><span id="gh-ug" class="gh-ug-guest" aria-expanded="false">Hi! <a href="/login" _sp="m570.l1524">Sign in</a>&nbsp;<span id="gh-ug-flex">or <a href="/signup" _sp="m570.l2621">register</a></span></span></li></div>
+	<%}
+%>
+</div>
 		</div>
 		
 		<span id="ph_LeftCenterBottomPanelDF"></span></div>
@@ -31,8 +41,15 @@
 	<div id="Foot">
 		<span id="ph_VRFooterDF"></span></div>
 	<div id="HtmlFrags"></div> 
+
+
+
 	
-	<span id="ph_JSDF"></span><script type="text/javascript">$df={set:function(a,b){a=document.getElementById(a);b=document.getElementById(b);if(a&&b){a.parentNode.replaceChild(b,a)}}}</script><div id="t_TopPanelDF" style="display:none"><div id="TopPanelDF"><script type="text/javascript">$df.set('ph_TopPanelDF','TopPanelDF')</script><div class="gh-acc-exp-div"><a id=gh-hdn-stm class="gh-acc-a" href="#mainContent">Skip to main content</a></div><!--[if lt IE 9]><div id="gh" class="gh-IE8 gh-flex gh-w no-touch "><![endif]--><!--[if (gte IE 9)|!(IE)]><!--><div id="gh" class="gh-flex gh-w no-touch "><!--<![endif]--><table class="gh-tbl"><tbody><tr><td class="gh-td"><!--[if lt IE 9]><a href="http://www.ebay.com/" class="iclg" _sp="m570.l2586" id="gh-la">eBay<img width="117" height="120" style="clip:rect(47px, 118px, 95px, 0px); position:absolute; top:-47px;left:0" alt="" src="http://ir.ebaystatic.com/rs/v/apstidvcvu5pxlbxkphrrdo5iqv.png" id="gh-logo"></a><![endif]--><!--[if (gte IE 9)|!(IE)]><!--><a href="http://www.ebay.com/" class="iclg" _sp="m570.l2586" id="gh-la">eBay<img width="250" height="200" style="clip:rect(47px, 118px, 95px, 0px); position:absolute; top:-47px;left:0" alt="" src="http://ir.ebaystatic.com/rs/v/fxxj3ttftm5ltcqnto1o4baovyl.png" id="gh-logo"></a><!--<![endif]--></td><td class="gh-td"><div id="gh-shop"><a href="http://www.ebay.com/sch/allcategories/all-categories?_trksid=m570.l3694" id=gh-shop-a role=button aria-expanded=false class=gh-control aria-controls=gh-sbc-o>Shop by category<i id=gh-shop-ei class=gh-sprRetina></i></a></div></td><td class="gh-td-s"><form id="gh-f" method="get" action="http://www.ebay.com/sch/i.html?_from=R40"><input name="_odkw" value="psv" type="hidden"/><input name="_from" value="R40" type="hidden"/><input name="_osacat" value="0" type="hidden"/><input type="hidden" value="R40" name="_from"><input type="hidden" name="_trksid" value="m570.l1313"><table class="gh-tbl2"><tbody><tr><td class="gh-td-s" ><div id="gh-ac-box"><div id="gh-ac-box2"><label for="gh-ac" class="gh-hdn g-hdn">Enter your search keyword</label><input type="text" class="gh-tb ui-autocomplete-input" size="50" maxlength="300" placeholder="Search..." id="gh-ac" name="_nkw" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" value="psv"></div></div></td><td class="gh-td" id=gh-cat-td><div id="gh-cat-box"><select title="Select a category for search" class="gh-sb gh-sprRetina" size="1" id="gh-cat" name="_sacat"><option value="0" selected="selected">All Categories</option><optgroup label="----------------------------------------"></optgroup><option value="20081">Antiques</option><option value="550">Art</option><option value="2984">Baby</option><option value="267">Books</option><option value="12576">Business &amp; Industrial</option><option value="625">Cameras &amp; Photo</option><option value="15032">Cell Phones &amp; Accessories</option><option value="11450">Clothing, Shoes &amp; Accessories</option><option value="11116">Coins &amp; Paper Money</option><option value="1">Collectibles</option><option value="58058">Computers/Tablets &amp; Networking</option><option value="293">Consumer Electronics</option><option value="14339">Crafts</option><option value="237">Dolls &amp; Bears</option><option value="11232">DVDs &amp; Movies</option><option value="6000">eBay Motors</option><option value="45100">Entertainment Memorabilia</option><option value="172008">Gift Cards &amp; Coupons</option><option value="26395">Health &amp; Beauty</option><option value="11700">Home &amp; Garden</option><option value="281">Jewelry &amp; Watches</option><option value="11233">Music</option><option value="619">Musical Instruments &amp; Gear</option><option value="1281">Pet Supplies</option><option value="870">Pottery &amp; Glass</option><option value="10542">Real Estate</option><option value="316">Specialty Services</option><option value="888">Sporting Goods</option><option value="64482">Sports Mem, Cards &amp; Fan Shop</option><option value="260">Stamps</option><option value="1305">Tickets &amp; Experiences</option><option value="220">Toys &amp; Hobbies</option><option value="3252">Travel</option><option value="1249">Video Games &amp; Consoles</option><option value="99">Everything Else</option></select></div></td><td class="gh-td" ><input type="submit" class="btn btn-prim gh-spr" id="gh-btn" value="Search"></td><td class="gh-td" id=gh-as-td><div id="gh-as"><a title="Advanced Search" href="http://www.ebay.com/sch/ebayadvsearch/?rt=nc" class=thrd _sp=m570.l2614 id=gh-as-a>Advanced</a></div></td></tr></tbody></table></form></td></tr></tbody></table><div id="gh-top"><ul id="gh-topl"><li class="gh-t gh-spr " id=gh-eb-u><script>(function(){try{var d=document.cookie,a=((a=d.match(/u1f.([^^]*)[0-9a-z]{8}/i))?a[1].replace(/\+/g," "):"").replace(/(.{12}).*/,"$1...");if(/[<>%&'\/]/.test(a)){throw(1)}document.write("<span id=gh-ug"+(!a||/u1p.QEBfX/.test(d)?' class=gh-ug-guest>Hi! <a href="https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&amp;_trksid=m570.l1524" rel="nofollow" _sp="m570.l1524">Sign in</a> <span id="gh-ug-flex">or <a href="https://reg.ebay.com/reg/PartialReg?_trksid=m570.l2621" rel="nofollow" _sp="m570.l2621">register</a></span>':' style="margin-right:3px">Hi <b>-User-</b>!'.replace(/-User-/,escape(a)))+"</span>")}catch(b){document.write("<style>#gh-topl{display:none}</style>")}})();</script><noscript class='gh-t gh-spr'>Hi (<a href="https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&amp;_trksid=m570.l3348">Sign in</a> to bid or buy)</noscript></li><li class="gh-t gh-spr " id=gh-p-1><a href="http://deals.ebay.com/" _sp=m570.l3188 class="gh-p" >Daily Deals</a></li><li class="gh-t gh-spr " id=gh-p-4><a href=" http://www.ebay.com/rpp/gift-cards" _sp=m570.l6463 class="gh-p" >Gift Cards</a></li><li class="gh-t gh-spr " id=gh-p-2><a href="http://csr.ebay.com/cse/sell.jsf" _sp=m570.l1528 class="gh-p" >Sell</a></li><li class="gh-t gh-spr " id=gh-p-3><a href="http://ocs.ebay.com/ws/eBayISAPI.dll?CustomerSupport" _sp=m570.l1545 class="gh-p" >Help & Contact</a></li><li class="gh-t gh-spr " id=gh-ti><a href="http://ad.doubleclick.net/ddm/trackclk/N2998.158587.EBAYSPAIN/B8069047.113310707;dc_trk_aid=286540347;dc_trk_cid=60494794?http://deals.ebay.com/" _sp=m570.l2611 id=gh-doodleS rel=nofollow><img src="http://ir.ebaystatic.com/pictures/aw/ads/doodle/18_VZN_59333_Q4KeyDates14_Small_150x30.png" id=gh-hsi height=30 width=150 alt="Shop Deals" title="Shop Deals" /></a></li></ul><ul id="gh-eb"><li id=gh-eb-My class="gh-eb-li gh-hvr gh-dd" data-imp=10><div class="gh-menu"><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&gbh=1" _sp=m570.l2919 class="gh-eb-li-a" >My eBay</a><a href="#gh-eb-My" role=button aria-expanded=false aria-controls=gh-eb-My-o class="gh-acc-exp-a gh-acc-a2 gh-control ">Expand My eBay</a><div class="gh-submenu gh-eb-o" id="gh-eb-My-o"><ul role=navigation><li ><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&amp;gbh=1&amp;CurrentPage=MyeBaySummary&amp;ssPageName=STRK:ME:LNLK:MESUMX" _sp=m570.l1533 class="gh-eb-oa thrd" >Summary</a></li><li ><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&amp;gbh=1&amp;CurrentPage=MyeBayBidding&amp;ssPageName=STRK:ME:LNLK:MEBIDX" _sp=m570.l1535 class="gh-eb-oa thrd" >Bids/Offers</a></li><li ><a href="http://www.ebay.com/myb/WatchList" _sp=m570.l1534 class="gh-eb-oa thrd" >Watch list</a></li><li ><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&CurrentPage=MyeBayNextListIndex&wl=1" _sp=m570.l3067 class="gh-eb-oa thrd" >Wish list</a></li><li ><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextListIndex&amp;tagId=-100&amp;ssPageName=STRK:ME:LNLK:MESINDXX" _sp=m570.l2618 class="gh-eb-oa thrd" >All lists</a></li><li ><a href="http://www.ebay.com/mbf/PurchaseHistory" _sp=m570.l1536 class="gh-eb-oa thrd" >Purchase history</a></li><li ><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&amp;gbh=1&amp;CurrentPage=MyeBayAllSelling&amp;ssPageName=STRK:ME:LNLK:MESX" _sp=m570.l1537 class="gh-eb-oa thrd" >Selling</a></li><li ><a href="http://www.ebay.com/cln/_mycollections" _sp=m570.l4780 class="gh-eb-oa thrd" >My Collections</a></li><li ><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&amp;gbh=1&amp;CurrentPage=MyeBayAllFavorites" _sp=m570.l1538 class="gh-eb-oa thrd" >Followed searches</a></li><li ><a href="http://mesgmy.ebay.com/ws/eBayISAPI.dll?ViewMyMessages&amp;gbh=1&amp;ssPageName=STRK:ME:LNLK&amp;CurrentPage=MyeBayMyMessages" _sp=m570.l1539 class="gh-eb-oa thrd" >Messages</a></li><li id=gh-eb-sub-li-cpn ></li></ul></div></div></li><li id=gh-eb-Alerts class="gh-eb-li gh-hvr gh-layer rt" ><div class="gh-menu"><a href="http://www.ebay.com" class="gh-control ghn-b gh-eb-li-a" role=button aria-expanded=false aria-controls=gh-eb-Alerts-o ><i id=gh-Alerts-i class=gh-sprRetina>Notification</i></a><div class="gh-sublayer"> </div></div></li><li id=gh-cart class="gh-eb-li rt" ><a href="http://cart.payments.ebay.com/sc/view" _sp=m570.l2633 title="Your shopping cart" class="gh-eb-li-a" ><i id=gh-cart-i class=gh-sprRetina></i></a></li></ul></div> </div><!--ts:2014.12.01.23:47--><!--rq:--><!--rvr:59rc5--></div></div><div id="t_TopPanelDFItemCount" style="display:none"><div id="TopPanelDFItemCount"><script type="text/javascript">$df.set('ph_TopPanelDFItemCount','TopPanelDFItemCount')</script></div></div><link href="http://ir.ebaystatic.com/rs/v/0xf4ajr3u210xdjldkf3ljzvhq5.css" type="text/css" rel="stylesheet" slotId="page-css"><div id="t_LeftCenterBottomPanelDF" style="display:none"><div id="LeftCenterBottomPanelDF"><script type="text/javascript">$df.set('ph_LeftCenterBottomPanelDF','LeftCenterBottomPanelDF')</script>
+	
+
+
+
+
 
 <div id="CenterWrapper">
 
@@ -86,32 +103,7 @@ f.m=function(a,c,d){function b(){if(!(e.f&&a||e.g)){var b=e.j;(new Date).getTime
 		<h2 class="hdnAcc">Items in search results</h2>
 <ul id="ListViewInner">
 	
-	<li id="item4ae0b9474b" _sp="p2045573.m1686.l3080" listingId="321597818699" class="sresult lvresult clearfix li"
-	r="1" >
 	
-	<div class="lvpic pic p225 img left" iid="321597818699" >
-			<div class="lvpicinner full-width picW s225">
-
-	<a href="http://www.ebay.com/itm/Brand-New-Factory-Sealed-Psv-Ps-Vita-Ultimate-Marvel-VS-Capcom-3-Region-Free-/321597818699?pt=Video_Games_Games&hash=item4ae0b9474b" class="img imgWr2">
-				     <img   height='225'   width='225' 
-						src="http://thumbs4.ebaystatic.com/d/l225/m/mf30vdMZW79aXpGLOy1QYJQ.jpg" class="img" alt='Brand New &amp; Factory Sealed Psv Ps Vita Ultimate Marvel VS Capcom 3 (Region Free)' />
-				</a>
-			</div></div>
-	<h3 class="lvtitle"><a href="http://www.ebay.com/itm/Brand-New-Factory-Sealed-Psv-Ps-Vita-Ultimate-Marvel-VS-Capcom-3-Region-Free-/321597818699?pt=Video_Games_Games&hash=item4ae0b9474b"  class="vip" title="Click this link to access Brand New &amp; Factory Sealed Psv Ps Vita Ultimate Marvel VS Capcom 3 (Region Free)">Brand New & Factory Sealed Psv Ps Vita Ultimate Marvel VS Capcom 3 (Region Free)</a>
-		</h3>
-	<ul class="lvprices left space-zero">
-
-	<li class="lvprice prc">
-			<span  class="g-b"
-	>$33.32</span>
-</li>
-	<li class="lvextras">
-		<div class="hotness bold">
-
-	</div>
-
-</li>
-    </ul></li>
     
     <%- list %>
     
