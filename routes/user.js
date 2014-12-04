@@ -271,7 +271,18 @@ function sellHis(req,res){
 	
 }
 function profileUpdate(req,res){
+	var userInfo="select * from user where userid="+req.user.userid+";";
+	sql.fetchData(userInfo,function(error,result)
+	{  console.log(result);
+		res.render('editInfo',{
+			user:result[0]
+			
+		});
+		
+	}		
 	
+	
+	)
 	
 	
 }

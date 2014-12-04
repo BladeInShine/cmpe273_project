@@ -179,7 +179,7 @@
 Address
   <div class="field" data-fieldname="country">
     
-    <input id="country" type="text" autocomplete="off" name="startprice" aria-required="true" value=<%=user.address%>>
+    <input id="country" type="text" autocomplete="off" name="startprice" aria-required="true" value='<%=user.address%>'>
   </div>
     
 </div>
@@ -187,13 +187,12 @@ Address
 City
   <div class="field" data-fieldname="zipcode">
     
-    <input id="zipcode" type="text" autocomplete="off" name="addprice" aria-required="true">
+    <input id="zipcode" type="text" autocomplete="off" name="addprice" aria-required="true" value='<%=user.city%>'>
   </div>
     
 </div>
 <br>   <div class="fv-w wtx" >
-<select  name="state" >
-    <option value=<%=user.state%>></option>
+<select  required name="state" >
     <option value="">State</option>
 	<option value="AL">Alabama</option>
 	<option value="AK">Alaska</option>
@@ -258,7 +257,7 @@ City
 <label for="address" >Zipcode</label>
 <input  type="text" name="zip" required id="city" size="5" class="wtx" style="
     width: 140px;
-    height: 30px;" pattern="\d{5}" title="The zip code should consist of five numbers only" value=<%=user.zipcode%>>
+    height: 30px;" pattern="\d{5}" title="The zip code should consist of five numbers only" value='<%=user.zip%>'>
 </div>
     
 </div>
