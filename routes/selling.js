@@ -81,11 +81,29 @@ function buyProduct(req,res){
 	var productId = req.query.productId;
 	var sellingId = req.query.sellingId;
 	var quantity = req.body.quantity;
-	var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "');";
+	//req.session.message = "";
 	
-	sql_con.insert(qS);
+	var qS1 = "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
+	sql_con.fetchData(qS1, function(error, rows){
+		
+		if(rows != null && rows.length > 0){
+			 var totalQuantity = rows[0].quantity;
+			if(quantity > totalQuantity){
+				req.session.message = "!No enough product";
+				res.redirect('/selling/' + sellingId);
+				
+			}else{
+				var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "');";
+				
+				sql_con.insert(qS);
+				
+				res.redirect('/cart/'+ userId);
+			}				
+		}
+
+	});
 	
-	res.redirect('/cart/'+ userId);
+	
 }
 
 function getSelling(req,res){
@@ -107,8 +125,13 @@ function getSelling(req,res){
 				var name = rows2[0].name;
 				var price = rows[0].price;
 				var pictureUrl = rows2[0].pictureurl;
+				var quantity = rows[0].quantity;
+				//req.session.message = "";
+				var message = req.session.message;
+				if(message == null) message = "";
+				else if(message != "" && message != "!No enough product") message = "";
 			
-				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId});
+				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, message: message});
 			});
 		}
 
