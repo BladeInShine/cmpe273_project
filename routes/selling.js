@@ -129,8 +129,7 @@ function getSelling(req,res){
 				//req.session.message = "";
 				var message = req.session.message;
 				if(message == null) message = "";
-				else if(message != "" && message != "!No enough product") message = "";
-			
+				
 				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, message: message});
 			});
 		}
