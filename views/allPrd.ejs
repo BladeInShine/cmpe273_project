@@ -1,0 +1,23 @@
+<html>
+<body>
+
+	
+	<%for(var i=0;i<pro.length;i++)
+
+
+{%>
+
+
+	<p>[id:<%=pro[i].id%>,name:<%=pro[i].name%>,description:<%=pro[i].description%>,owner:<%=pro[i].owner%>,cat:<%=pro[i].cat%>,pictureurl:<%=pro[i].pictureurl%>,sellorauction:<%=pro[i].sellorauction%>,condi:<%=pro[i].condi%>]</p>
+<%}
+%>
+
+<form action='/deleteproduct' name='deleteproduct' method="post">
+	input product id to delete product:
+	<input name='proid' type="text" >
+   <input type="submit" value="Submit">
+<p><%=mes%></p>
+</form>
+
+	</body>
+	</html>

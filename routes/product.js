@@ -11,7 +11,24 @@ var passpport=require('passport');
 
 
 function getAllProduct(req,res) {
-
+var proSQL="select * from product ;"
+	if(req.user.email=="admin@ebay.com")
+	{
+	sql.fetchData(proSQL,function(error,result){
+		var mes="";
+		res.render('allPrd',{
+			pro:result,
+			mes:mes
+			
+			
+		});
+		
+		
+	})
+	}
+	else{
+		 res.redirect('/login');
+	}
 	
 }
 
@@ -48,18 +65,34 @@ function createProduct(req,res) {
 }
 
 function deleteProduct(req,res) {
-
-	ejs.renderFile('./views/signin.ejs',function(err, result) {
-	   // render on success
-	   if (!err) {
-	            res.end(result);
-	   }
-	   // render or error
-	   else {
-	            res.end('An error occurred');
-	            console.log(err);
-	   }
-   });
+    var proid=req.body.proid;
+    console.log(proid);
+	var delpro="DELETE FROM product WHERE id='"+proid+"';";
+	if(req.user.email=="admin@ebay.com")	
+	{
+		sql.fetchData(delpro,function(error,result){
+	
+		var mes="";
+		if(error)
+			{
+			console.log("product not fount");
+			mes="delete product error";
+			}
+		else{
+			mes="product deleted";		
+		}
+		res.render('/product',{
+			mes:mes
+			
+		})
+		
+	})
+	}
+	else{
+		res.redirect('/login');
+	}
+	
+	
 }
 function buyProduct(req,res) {
 

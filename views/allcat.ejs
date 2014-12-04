@@ -1,0 +1,23 @@
+<html>
+<body>
+
+	
+	<%for(var i=0;i<cat.length;i++)
+
+
+{%>
+
+
+	<p>[catname:<%=cat[i].catname%>,description:<%=cat[i].description%>]</p>
+<%}
+%>
+
+<form action='/deletecats' name='deletcat' method="post">
+	input catname to delete category:
+	<input name='catname' type="text" >
+   <input type="submit" value="Submit">
+<p><%=mes%></p>
+</form>
+
+	</body>
+	</html>
