@@ -1,0 +1,15 @@
+<html>
+<body>
+
+	<%for(var i=0;i<user.length;i++)
+
+
+{%>
+
+
+	<p>[id:<%=user[i].userid%>,email:<%=user[i].email%>,firstname:<%=user[i].firstname%>,lastname:<%=user[i].lastname%>,address:<%=user[i].address%>,city:<%=user[i].city%>,state:<%=user[i].state%>,zipcode:<%=user[i].zip%>]</p>
+<%}
+%>
+<form action="/delete"
+	</body>
+	</html>

@@ -42,7 +42,16 @@ function loginPost(req,res){
 	if(!req.isAuthenticated())
 	 {
 		 res.redirect('/login');
-		}	
+		}
+	if(req.user.email=="admin@ebay.com")
+		{
+		res.render('admin',
+		{
+			user:req.user
+			});
+		}
+		
+		
     console.log("/ligin POST is requested.");
     console.log(req.user);
     var catQuery= "select * from cat";
@@ -174,8 +183,24 @@ function getAllSeller(){
 	
 	
 }
-function getAllCustomer(){
-	
+function getAllCustomer(req,res){
+	var proSQL="select * from user ;"
+if(req.user.email=="admin@ebay.com")
+	{	
+	 sql.fetchData(proSQL,function(error,result){
+			
+			res.render('allUser',{
+				user:result
+				
+				
+			});
+			
+			
+		})	
+	}
+ else {
+	 res.redirect('/login');
+}
 	
 	
 }

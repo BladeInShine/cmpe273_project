@@ -5,7 +5,24 @@ var passpport=require('passport');
 
 
 function getAllCat(req,res) {
-
+	var proSQL="select * from cat ;"
+		if(req.user.email=="admin@ebay.com")
+			{	
+			 sql.fetchData(proSQL,function(error,result){
+					var mes="";
+					res.render('allCat',{
+						cat:result,
+						mes:mes
+						
+					});
+					
+					
+				})	
+			}
+		 else {
+			 res.redirect('/login');
+		}
+			
 }
 
 function getCat(req,res) {
