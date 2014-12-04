@@ -59,7 +59,7 @@
 			<div class="topTitle">
 	<h1>
 	<span class="page-domain">My eBay: </span>
-	<span class="page-name">Purchase history</span>
+	<span class="page-name">Sell history</span>
 		</h1>	
 	<span class="hidden" id="landing-page-url">http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;mode=0&amp;CurrentPage=MyeBayNextWon&amp;SubmitAction.GeneralSettingsUpdateAction=x&amp;MyeBayDefaultPageDD=113</span>
 <!-- 	
@@ -77,10 +77,11 @@
 <div class="tabbable">
 	<ul class="nav nav-tabs-p" role="navigation">
 	<li class="tab active">
-			
+			<a href="#">Activity</a>
 					<ul class="nav-menu">
-					<li><a href="/profile">Summary</a></li>
-					
+					<li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextSummary&amp;ssPageName=STRK%3AME%3ALNLK%3AMESUMX&amp;_trksid=p2059210.m2034.l3382" title="Summary">Summary</a></li>
+					<li><a href="http://www.ebay.com/myb/WatchList?_trksid=p2059210.m2034.l3387" title="Watch">Watch</a></li>
+					<li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextAllSelling&amp;ssPageName=STRK%3AME%3ALNLK%3AMESX&amp;_trksid=p2059210.m2295.l3934" title="Sell">Sell</a></li>
 					</ul>
 			</li>
 	
@@ -93,7 +94,7 @@
 		<div id="domain-nav">
 			<h2 class="gh-ar-hdn">Navigation Menu</h2>
 			<div class="menu-list" role="navigation">
-		<p class="menu-head "><a href="/profile">Summary<b class="gh-ar-hdn">Page</b></a></p>
+		<p class="menu-head selected"><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextSummary&amp;ssPageName=STRK%3AME%3ALNLK%3AMESUMX&amp;_trksid=p2060778.m2034.l3382" _sp="p2060778.m2034.l3382">Summary<b class="gh-ar-hdn">Page</b></a></p>
 	    		<p class="menu-head mb0 expd" data-src="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;leftnav_buy=&amp;CurrentPage=MyeBayNextSummary&amp;SubmitAction.MyeBayLeftNav=x&amp;ChunkedRendOff=true"><a href="javascript:;" role="button" aria-expanded="true" class="menu-indicator menu-expd" title="Buy"><b class="gh-ar-hdn">BuyMenu</b></a>Buy</p>
 				<div style="display: block" class="menu-body">
 			    	<ul>
@@ -102,8 +103,8 @@
 			    			<li class=" sub-menu-li"><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;NewFilter=Won&amp;SubmitAction.ChangeFilterSortPeriodAction=x&amp;view=MyeBayNextBuyingDeletedItems&amp;NewPeriod=Last31Days&amp;Column=BuyerDeleteDate&amp;SortOrder=DESCEND&amp;CurrentPage=MyeBayNextBuyingDeletedItems&amp;ssPageName=STRK%3AME%3ALNLK%3AMEDIX&amp;_trksid=p2060778.m2034.l3386" _sp="p2060778.m2034.l3386">Deleted<b class="gh-ar-hdn">Page</b></a></li>
 			    			</ul>
 					</div>
-		   <p class="menu-head selected"><a href="/purhis">Purchase history<b class="gh-ar-hdn">Page</b></a></p>
-		   <p class="menu-head "><a href="/purhis">Selling history <b class="gh-ar-hdn">Page</b></a></p>
+		   <p class="menu-head "><a href="/purhis">Purchase history<b class="gh-ar-hdn">Page</b></a></p>
+		   <p class="menu-head selected"><a href="/sellhis">Selling history <b class="gh-ar-hdn">Page</b></a></p>
 	<!-- <div class="menu-list" role="navigation">
 		<p class="menu-head "><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextSummary&amp;ssPageName=STRK%3AME%3ALNLK%3AMESUMX&amp;_trksid=p2059210.m2034.l3382" _sp="p2059210.m2034.l3382">Summary<b class="gh-ar-hdn">Page</b></a></p>
 	    		<p class="menu-head mb0 expd" data-src="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;leftnav_buy=&amp;CurrentPage=MyeBayNextWon&amp;SubmitAction.MyeBayLeftNav=x&amp;ChunkedRendOff=true"><a href="javascript:;" role="button" aria-expanded="true" class="menu-indicator menu-expd" title="Buy"><b class="gh-ar-hdn">BuyMenu</b></a>Buy</p>
@@ -146,19 +147,8 @@
 		<div id="main-content">
 
 			
-			<div id="ss-msg" class="hide">
-					<div class="sm-co sm-er">
-				<i class="gspr icmer"></i> 
-				<p class="sm-md">
-					Sorry, we couldn't complete your request. Try again later.</p>
-				</div>
-		</div>
-			<div id="purchase-history" class="my-container-parent"><div class="ph-lazy-loading">Loading...</div>  <div id="orders" data-show-status="true" class="my-container  item-list orders  merch-called" data-name="m2749" data-lazy="false"><span class="hidden c-info">{"title":"Orders","itemType":"items","type":"m2749", "resultSetPath":"ui/myebay/containers/Orders/resultSet", "itemsPerPagePath":
-"ui/myebay/components/container/itemsPerPageR",
-"emptySetPath":"ui/myebay/containers/Orders/emptyOrders",
-"headerFiltersPath":"ui/myebay/containers/Orders/ordersFilters",
-"headerInfoPath":"ui/myebay/containers/PurchaseHistory/headerInfo",
-"paginationPath":"ui/myebay/containers/Orders/ordersPagination"}</span><span class="hidden page-id">2059210</span><span class="hidden module-id">2749</span><span class="hidden user-preference"></span><span class="util-action hidden note" data-url="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;ChunkedRendOff=true"></span> <span class="util-action hidden hide" data-url="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;tagId=-100&amp;SubmitAction.BulkRemove=x&amp;SourcePage=MyeBayNextWon&amp;wonrad=on&amp;CurrentPage=MyeBayNextWon&amp;View=WonNext&amp;copagenum=1&amp;coentrypage=myebay&amp;MfcISAPICommand=MyEbayBeta&amp;WonNext.Page=1&amp;WonNext.Filter=WaitPayment&amp;SortOrder=ASCEND&amp;Column=SaleDate"></span> <span class="util-action hidden unhide" data-url="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;SubmitAction.Undelete=Undelete&amp;View=WonNext&amp;NewPeriod=null&amp;Column=null&amp;NewFilter=Won&amp;CurrentPage=MyeBayNextWon"></span> <div class="container-header"><h2 class="container-title">Orders</h2> </div><div class="ajax-wrap">
+			
+			<div id="purchase-history" class="my-container-parent"> <div id="orders" data-show-status="true" class="my-container  item-list orders  merch-called" data-name="m2749" data-lazy="false"><div class="container-header"><h2 class="container-title">Orders</h2> </div><div class="ajax-wrap">
 
 
 <div class="bulk-actions-border"></div><div class="result-set-r"> 
@@ -167,7 +157,8 @@
 
 <% for(var i=0;i<data.length;i++)
 {%>
-<div class="order-r my-row-r item-list-all"><table class="order-row my-row" data-url="javascript:;"><tbody><tr><td class="coln0"><input type="checkbox" class="item-select s1 s2" data-orderid="939467852015" data-itemid="8"></td><td class="order-image-col less-three "><div class="purchase-header row-header"><span class="header-label">ORDER DATE</span><div class="row-date"><%=data[i].date%><p></p<><div><br> </div></td> <td class="order-info-col"><div class="order-info-top"></div> </td> </tr></tbody></table><div class="order-item-count">1 item sold by<a class="seller-id" title="ianhaze user ID, click for member’s profile" href="http://www.ebay.com/usr/ianhaze?_trksid=p2059210.m2749.l2754"><%=data[i].owner%></a> </div> <div class="sub-level-inner one-item"><div class="item-level-wrap"><table class="commitment-row my-row" data-url="javascript:;"><tbody><tr><td class="coln0"><input type="checkbox" class="item-select s1 s2" data-transid="939467852015" data-itemid="250770459693"></td><td class="coln1"><div class="coln1-wrap"><div class="picCol"> <div class="l-shad lftd i200"><span class="imgt"><div class="img-wrap" title="Authentic SK-II Facial Treatment Essence 215ml SK2 SKII"><span class="helper"></span><img class="lazy-img myb-img" src="http://i.ebayimg.com/images/i/250770459693-0-0/s-l140.jpg" data-src="http://i.ebayimg.com/images/i/250770459693-0-0/s-l140.jpg" border="0" alt="Authentic SK-II Facial Treatment Essence 215ml SK2 SKII"></div></span><div class="image-shadow"></div></div>  </div><div class="item-spec-r"><div class="item-spec item-title-wrap"><div class="vip item-title" itemprop="name"><%=data[i].name%></div></div>  <div class="item-spec"> </div> <i class="icon-label note"></i><div class="ntxt" title=""></div></div><div class="item-actions"> </div></div> </div></td><td class="purchase-info-col"><span class="header-label">ITEM PRICE:</span><div class="bin-info" aria-live="polite"><span class="cost-label ">US $<%=data[i].price%></span></div></td><td class="coln5 action-col"></td></tr></tbody></table></div></div></div>
+<div class="order-r my-row-r item-list-all"><table class="order-row my-row" data-url="javascript:;"><tbody><tr><td class="coln0"><input type="checkbox" class="item-select s1 s2" data-orderid="939467852015" data-itemid="8"></td><td class="order-image-col less-three "><div class="purchase-header row-header"><span class="header-label">Product Posted date:</span><div class="row-date">
+	<%=data[i].startdate%><div><br> </div></td> <td class="order-info-col"><div class="order-info-top"></div> </td> </tr></tbody></table><div class="order-item-count">items avaiable:<%=data[i].quantity%></p> </div> <div class="sub-level-inner one-item"><div class="item-level-wrap"><table class="commitment-row my-row" data-url="javascript:;"><tbody><tr><td class="coln0"><input type="checkbox" class="item-select s1 s2" data-transid="939467852015" data-itemid="250770459693"></td><td class="coln1"><div class="coln1-wrap"><div class="picCol"> <div class="l-shad lftd i200"><span class="imgt"><div class="img-wrap" title="Authentic SK-II Facial Treatment Essence 215ml SK2 SKII"><span class="helper"></span><img class="lazy-img myb-img" src="http://i.ebayimg.com/images/i/250770459693-0-0/s-l140.jpg" data-src="http://i.ebayimg.com/images/i/250770459693-0-0/s-l140.jpg" border="0" alt="Authentic SK-II Facial Treatment Essence 215ml SK2 SKII"></div></span><div class="image-shadow"></div></div>  </div><div class="item-spec-r"><div class="item-spec item-title-wrap"><div class="vip item-title" itemprop="name"><%=data[i].name%></div></div>  <div class="item-spec"> </div> <i class="icon-label note"></i><div class="ntxt" title=""></div></div><div class="item-actions"> </div></div> </div></td><td class="purchase-info-col"><span class="header-label">ITEM PRICE:</span><div class="bin-info" aria-live="polite"><span class="cost-label ">US $<%=data[i].price%></span></div></td><td class="coln5 action-col"></td></tr></tbody></table></div></div></div></div>
 
 <%}
 %>
@@ -175,7 +166,7 @@
 
 
 
-	</div>
+	
 
 	<!-- Add Nume Merch -->
 	<!-- End of Nume Merch -->

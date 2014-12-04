@@ -226,12 +226,37 @@ function purHis(req,res){
 	 {
 		 res.redirect('/login');
 		}
-	var user=req.user.email;
-	var hisSQL="select owner,date,name,description,price from cmpe273project.user join cmpe273project.buying join cmpe273project.selling join cmpe273project.product where user.email=buying.buyer and buying.selling = selling.id and selling.product =product.id and user.email='"+user+"';";
+	var user=req.user.userid;
+	var hisSQL="select owner,date,name,description,price from cmpe273project.user join cmpe273project.buying join cmpe273project.selling join cmpe273project.product where user.userid=buying.buyer and buying.selling = selling.id and selling.product =product.id and user.userid="+user+";";	
 	
     sql.fetchData(hisSQL,function(error,result){
-    	
+     
+    	var ownerSQL="select "
     	res.render('purHis',{
+    		
+    		data:result,
+    		user:req.user,
+    		
+    		
+    	})
+    	
+    	
+    	
+    })
+	
+	
+}
+function sellHis(req,res){
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var user=req.user.userid;
+	var hisSQL="select startdate,name,description,price,quantity from cmpe273project.user join cmpe273project.buying join cmpe273project.selling join cmpe273project.product where user.userid=product.owner and buying.selling = selling.id and selling.product =product.id and user.userid="+user+";";
+	console.log(req.user.id);
+    sql.fetchData(hisSQL,function(error,result){
+    	console.log(result);
+    	res.render('sellHis',{
     		
     		data:result,
     		user:req.user,
@@ -258,7 +283,7 @@ function deserializeUser(email,done){
 	sql.fetchData(qS, function(error, rows){
 
 	//	console.log("In passport.deserializeUser: email is " + rows[0].email);
-		done(null, {email: rows[0].email, firstname: rows[0].firstname, lastname: rows[0].lastname, zipcode: rows[0].zipcode, lastlogintime: rows[0].lastlogintime});
+		done(null, {email: rows[0].email, firstname: rows[0].firstname, lastname: rows[0].lastname, zipcode: rows[0].zipcode, lastlogintime: rows[0].lastlogintime,userid:rows[0].userid});
 	});
 	}
 //})		
@@ -279,3 +304,4 @@ exports.getAllSeller=getAllSeller;
 exports.getAllCustomer=getAllCustomer;
 exports.logout=logout;
 exports.purHis=purHis;
+exports.sellHis=sellHis;
