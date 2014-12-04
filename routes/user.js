@@ -20,29 +20,31 @@ sql.fetchData(catQuery, function(error, result){
 function login (req,res) {
 	
 res.render('login',{
-	isAuthenticate: req.isAuthenticated(),
 	user:req.user,
+	mes:""
 })}
 function loginfail(req,res){
 	
-	res.render('loginfail');
+	res.render('login',{
+		mes:"Your email/username or password is incorrect."
+		
+	});
 	
 	
 	
 } 
 function signupfail(req,res){
-	console.log("inside signup failure");
 	
-	res.render('signupfail');
+	
+	res.render('signup',{
+		mes:"Your email address is already registered with eBay."
+	});
 	
 }
 
 function loginPost(req,res){
 	//passport.authenticate('local');
-	if(!req.isAuthenticated())
-	 {
-		 res.redirect('/login');
-		}
+	
 	if(req.user.email=="admin@ebay.com")
 		{
 		res.render('admin',
@@ -50,22 +52,24 @@ function loginPost(req,res){
 			user:req.user
 			});
 		}
-		
+	else{	
+		res.redirect('/');
+		}
 		
     console.log("/ligin POST is requested.");
     console.log(req.user);
-    var catQuery= "select * from cat";
-    sql.fetchData(catQuery, function(error, result){
-    	if(result.length==0)
-    		{
-    		res.redirect("loginfial");
-    		}
-    res.render('index',{
-    	user: req.user,
-		isAuthenticate: req.isAuthenticated(),
-		cat:result
-	});	
-    })
+//    var catQuery= "select * from cat";
+//    sql.fetchData(catQuery, function(error, result){
+//    	if(result.length==0)
+//    		{
+//    		res.redirect("loginfial");
+//    		}
+//    res.render('index',{
+//    	user: req.user,
+//		isAuthenticate: req.isAuthenticated(),
+//		cat:result
+//	});	
+//    })
   
 }
 
@@ -110,9 +114,14 @@ function logout(req,res){
 			
 		}
 		
-		else (rows[0].password == password)
+		else if(rows[0].password == password)
 		{
 			done(null, {email: rows[0].email, firstname: rows[0].firstname, lastname: rows[0].lastname});
+		}
+		else
+		{
+
+			done(null, null);
 		}
 		
 	});
@@ -122,6 +131,7 @@ function signup(req,res){
 
 	res.render('signup',{
 		isAuthenticate: req.isAuthenticated(),
+		mes:""
 		
 	});	
                              
@@ -143,14 +153,21 @@ console.log("address"+address);
 console.log("city"+city);
 console.log("state"+state);
 console.log("zip"+zip);
+var emailsql="select email from user where email='"+email+"';";
+sql.fetchData(emailsql,function(error,result){
+	if(result.length>0)
+		{
+		res.redirect("/signupfail");
+		}
+	else{
 var userSQL = "INSERT INTO user (`email`, `password`, `firstName`, `lastName`,`address`,`city`,`state`,`zip` ) VALUES ('" + email + "', '" + pwd + "', '" + first + "', '" + last + "','"+ address +"','"+city+"','"+state+"','"+zip+"');";
 sql.fetchData(userSQL,function(error,callback){
 console.log(callback);
 console.log("error:"+error);
-//sql.fetchData(userSQL,function(error,callback){
-//
-//})
-res.render('login');
+
+res.redirect('/login');
+})
+	}
 })
 }
 
@@ -235,16 +252,17 @@ function serializeUser(user,done){
 }
  
 function deserializeUser(email,done){
-  var qS = "SELECT * FROM user where email = '" + email + "';";
   
-		
+  
+  var qS = "SELECT * FROM user where email = '" + email + "';";
 	sql.fetchData(qS, function(error, rows){
-	   		done(null, {email: rows[0].email, firstname: rows[0].firstName, lastname: rows[0].lastName});
-		
-				})
 
-		
-}
+	//	console.log("In passport.deserializeUser: email is " + rows[0].email);
+		done(null, {email: rows[0].email, firstname: rows[0].firstname, lastname: rows[0].lastname, zipcode: rows[0].zipcode, lastlogintime: rows[0].lastlogintime});
+	});
+	}
+//})		
+//}
 
 exports.root=root;
 exports.deserializeUser = deserializeUser;

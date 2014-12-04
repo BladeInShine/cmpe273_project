@@ -69,7 +69,7 @@ function createCat(req,res) {
 
 function deleteCat(req,res) {
 	var name = req.param('catname');
-	var selectSQL = "select * from cat where UPPER(catname) = UPPER('"+name+"')";
+	var selectSQL = "select * from cat where catname = '"+name+"'";
 	var deleteSQL = "DELETE FROM cat WHERE catname = '"+name+"'";
 	sql.fetchData(selectSQL, function(error, result){
 		sql.fetchData(deleteSQL, function(error, result){

@@ -12,7 +12,8 @@ var passpport=require('passport');
 
 function getAllProduct(req,res) {
 var proSQL="select * from product ;"
-	
+	if(req.user.email=="admin@ebay.com")
+	{
 	sql.fetchData(proSQL,function(error,result){
 		var mes="";
 		res.render('allPrd',{
@@ -24,6 +25,10 @@ var proSQL="select * from product ;"
 		
 		
 	})
+	}
+	else{
+		 res.redirect('/login');
+	}
 	
 }
 
