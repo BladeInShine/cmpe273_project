@@ -75,7 +75,16 @@ app.post('/signup', user.signupPost);
 app.get('/profile', user.profile);
 
 app.get('/purhis', user.purHis);
+
+app.get('/sellhis', user.sellHis);
+
+app.get('/auchis', user.aucHis);
+
+app.get('/bidhis', user.bidHis);
+
+app.get('/profileupdate', user.profileUpdate);
 	
+app.post('/profileupdate', user.profileUpdatePost);
 
 
 //get all sellers, in json format TBD
