@@ -270,6 +270,28 @@ function sellHis(req,res){
 	
 	
 }
+function profileUpdate(req,res){
+	
+	
+	
+}
+
+function profileUpdatePost(req,res){
+	
+	
+	
+}
+
+function aucHis(req,res){
+	
+	
+	
+}
+function bidHis(req,res){
+	
+	
+	
+}
 
 function serializeUser(user,done){
 	done(null,user.email);
@@ -304,4 +326,8 @@ exports.getAllSeller=getAllSeller;
 exports.getAllCustomer=getAllCustomer;
 exports.logout=logout;
 exports.purHis=purHis;
+exports.profileUpdatePost=profileUpdatePost;
+exports.profileUpdate=profileUpdate;
+exports.aucHis=aucHis;
+exports.bidHis=bidHis;
 exports.sellHis=sellHis;
