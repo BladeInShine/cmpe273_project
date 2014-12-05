@@ -33,18 +33,7 @@ var proSQL="select * from product ;"
 }
 
 function getProduct(req,res) {
-	var prd=req.param('productid');
-	var pdtSQL="select * from product where id='"+prd+"';";
-	sql.fetchData(pdtSQL,function(error,result){
-		console.log(result);
-		res.render('selling',{
-			isAuthenticate: req.isAuthenticated(),
-			pdt:result,
-			
-		
-	})
 	
-	})
 	
 	
 }
