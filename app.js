@@ -161,7 +161,7 @@ app.get('/review/:userid', review.getReview);
 app.post('/deletereview', review.deleteReview);
 
 
-app.get('/search/:keyword', search.search);
+app.get('/search', search.search);
 
 
 app.get('/cart/:userid', cart.getCart);
@@ -177,3 +177,29 @@ app.listen(port,function(){
 	console.log('http://127.0.0.1:'+port+'/');
   
   });
+
+//while(true){console.log("here");}
+setInterval(function(){
+	
+	console.log("Timer here"); 
+	var qS = "select * from `cmpe273project`.`auction` where inprogress != 'false';";
+	con.fetchData(qS, function(error, rows){
+		
+		for(var i = 0; i < rows.length; i ++){
+			
+			var minR = rows[i].minremain - 1;
+			var qS2 = "";
+			if(minR <= 0){
+				
+				qS2 = "UPDATE `cmpe273project`.`auction` SET `minremain`='" + 0 + "', `inprogress`='false' WHERE `id`='" + rows[i].id + "';";
+			}
+			else{
+				
+				qS2 = "UPDATE `cmpe273project`.`auction` SET `minremain`='" + minR + "' WHERE `id`='" + rows[i].id + "';";
+
+			}
+			con.insert(qS2);
+		}
+	});
+	
+}, 60000);
