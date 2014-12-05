@@ -130,6 +130,10 @@ app.post('/selling', selling.createSelling);
 
 app.post('/deleteselling', selling.deleteSelling);
 
+app.get('/editSelling/:sellingid', selling.editSellPage);
+
+app.post('/editSelling/:sellingid', selling.editSellInfo);
+
 
 //get all auctions, in json format TBD
 app.get('/auction', auction.getAllAuction);
@@ -188,17 +192,26 @@ setInterval(function(){
 		for(var i = 0; i < rows.length; i ++){
 			
 			var minR = rows[i].minremain - 1;
+			var auctionId = rows[i].id;
 			var qS2 = "";
 			if(minR <= 0){
 				
-				qS2 = "UPDATE `cmpe273project`.`auction` SET `minremain`='" + 0 + "', `inprogress`='false' WHERE `id`='" + rows[i].id + "';";
+				qS2 = "UPDATE `cmpe273project`.`auction` SET `minremain`='" + 0 + "', `inprogress`='false' WHERE `id`='" + auctionId + "';";
+				con.insert(qS2);
+				var qS3 = "SELECT id from `cmpe273project`.`bid` where auction = " + auctionId + " and price = " + rows[i].currentprice + ";";
+				con.fetchData(qS3, function(error, rows2){
+					
+					var qS4 = "UPDATE `cmpe273project`.`bid` SET `finalbid`='true' WHERE `id`='" + rows2[0].id + "';";
+					con.insert(qS4);
+				});
 			}
 			else{
 				
 				qS2 = "UPDATE `cmpe273project`.`auction` SET `minremain`='" + minR + "' WHERE `id`='" + rows[i].id + "';";
-
+				con.insert(qS2);
+			
 			}
-			con.insert(qS2);
+			
 		}
 	});
 	
