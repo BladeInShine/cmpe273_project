@@ -23,18 +23,25 @@
 	<div id="Body">
 		<div id="Top">
 			<div id="TopPanel">
-				<% if(isAuthenticate)
+		<% if(isAuthenticate)
 		{%>
-	<div id="gh-top" style="left:250px"><ul id="gh-topl" ><li class="gh-t gh-spr" id="gh-eb-u"><span id="gh-ug" class="gh-ug-guest" aria-expanded="false">Hi! <a href="/profile" _sp="m570.l1524"><%=user.email%></a></span></li><div class="gh-menu"><a href="/profile" class="gh-eb-li-a">My eBay</a><li class="gh-t gh-spr " id="gh-p-3"><a href="/logout" _sp="m570.l1545" class="gh-p">Log Out</a></li>
+	<div id="gh-top" style="left:250px"><ul id="gh-topl"><li class="gh-t gh-spr" id="gh-eb-u"><span id="gh-ug" class="gh-ug-guest" aria-expanded="false">Hi! <a href="/profile" _sp="m570.l1524"><%=user.email%></a></span></li>
+		<div class="gh-menu"><a href="/profile" class="gh-eb-li-a">My eBay</a><li class="gh-t gh-spr " id="gh-p-3"><a href="/logout" _sp="m570.l1545" class="gh-p">Log Out</a></li>
+			<li id="gh-cart" class="gh-eb-li rt"><a href="http://cart.payments.ebay.com/sc/view" _sp="m570.l2633" title="Your shopping cart is empty" class="gh-eb-li-a" alt="Your shopping cart is empty"><i id="gh-cart-i" class="gh-sprRetina"></i></a></li>
 </ul>
 
 <%}
 else{%>
-<div id="gh-top" style="left:250px"><ul id="gh-topl"><li class="gh-t gh-spr" id="gh-eb-u"><span id="gh-ug" class="gh-ug-guest" aria-expanded="false">Hi! <a href="/login" _sp="m570.l1524">Sign in</a>&nbsp;<span id="gh-ug-flex">or <a href="/signup" _sp="m570.l2621">register</a></span></span></li></div>
+<div id="gh-top" style="left:250px"><ul id="gh-topl"><li class="gh-t gh-spr" id="gh-eb-u"><span id="gh-ug" class="gh-ug-guest" aria-expanded="false">Hi! <a href="/login" _sp="m570.l1524">Sign in</a>&nbsp;<span id="gh-ug-flex">or <a href="/signup" _sp="m570.l2621">register</a></span></span></li>
 	<%}
 %>
+
+	<!-- <li class="gh-t gh-spr " id="gh-p-1"><a href="http://deals.ebay.com/" _sp="m570.l3188" class="gh-p">Daily Deals</a></li><li class="gh-t gh-spr " id="gh-p-4"><a href=" http://www.ebay.com/rpp/gift-cards" _sp="m570.l6463" class="gh-p">Gift Cards</a></li><li class="gh-t gh-spr " id="gh-p-2"><a href="http://csr.ebay.com/cse/sell.jsf" _sp="m570.l1528" class="gh-p">Sell</a></li><li class="gh-t gh-spr " id="gh-p-3"><a href="http://ocs.ebay.com/ws/eBayISAPI.dll?CustomerSupport" _sp="m570.l1545" class="gh-p">Help &amp; Contact</a></li> -->
+
+	<!-- <ul id="gh-eb"><li id="gh-eb-My" class="gh-eb-li gh-dd" data-imp="10"><div class="gh-menu"><a href="/profile" class="gh-eb-li-a">My eBay</a> --><!-- <a href="#gh-eb-My" role="button" aria-expanded="false" aria-controls="gh-eb-My-o" class="gh-acc-exp-a gh-acc-a2 gh-control ">Expand My eBay</a><div class="gh-submenu gh-eb-o" id="gh-eb-My-o" style="display: none;"><ul role="navigation"><li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&amp;gbh=1&amp;CurrentPage=MyeBaySummary&amp;ssPageName=STRK:ME:LNLK:MESUMX" _sp="m570.l1533" class="gh-eb-oa thrd">Summary</a></li><li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&amp;gbh=1&amp;CurrentPage=MyeBayBidding&amp;ssPageName=STRK:ME:LNLK:MEBIDX" _sp="m570.l1535" class="gh-eb-oa thrd">Bids/Offers</a></li><li><a href="http://www.ebay.com/myb/WatchList" _sp="m570.l1534" class="gh-eb-oa thrd">Watch list</a></li><li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextListIndex&amp;wl=1" _sp="m570.l3067" class="gh-eb-oa thrd">Wish list</a></li><li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextListIndex&amp;tagId=-100&amp;ssPageName=STRK:ME:LNLK:MESINDXX" _sp="m570.l2618" class="gh-eb-oa thrd">All lists</a></li><li><a href="http://www.ebay.com/mbf/PurchaseHistory" _sp="m570.l1536" class="gh-eb-oa thrd">Purchase history</a></li><li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&amp;gbh=1&amp;CurrentPage=MyeBayAllSelling&amp;ssPageName=STRK:ME:LNLK:MESX" _sp="m570.l1537" class="gh-eb-oa thrd">Selling</a></li><li><a href="http://www.ebay.com/cln/_mycollections" _sp="m570.l4780" class="gh-eb-oa thrd">My Collections</a></li><li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbay&amp;gbh=1&amp;CurrentPage=MyeBayAllFavorites" _sp="m570.l1538" class="gh-eb-oa thrd">Followed searches</a></li><li><a href="http://mesgmy.ebay.com/ws/eBayISAPI.dll?ViewMyMessages&amp;gbh=1&amp;ssPageName=STRK:ME:LNLK&amp;CurrentPage=MyeBayMyMessages" _sp="m570.l1539" class="gh-eb-oa thrd">Messages</a></li><li id="gh-eb-sub-li-cpn"></li></ul></div></div></li><li id="gh-eb-Alerts" class="gh-eb-li gh-layer rt  gh-eb-Alerts-tab-0"><div class="gh-menu"><a href="/profile" class="gh-control ghn-b gh-eb-li-a" role="button" aria-expanded="false" aria-controls="gh-eb-Alerts-o"></a><div class="gh-sublayer"></div></div></li> --><!-- <li id="gh-cart" class="gh-eb-li rt"><a href="http://cart.payments.ebay.com/sc/view" _sp="m570.l2633" title="Your shopping cart is empty" class="gh-eb-li-a" alt="Your shopping cart is empty"><i id="gh-cart-i" class="gh-sprRetina"></i></a></li> --></ul></div>
+
+
 </div>
-		</div>
 		
 		<span id="ph_LeftCenterBottomPanelDF"></span></div>
 	
@@ -52,10 +59,15 @@ else{%>
 
 
 <div id="CenterWrapper">
-
+<td class="gh-td"><!--[if lt IE 9]><a href="http://www.ebay.com/" class="iclg" _sp="m570.l2586" id="gh-la">eBay<img width="117" height="120" style="clip:rect(47px, 118px, 95px, 0px); position:absolute; top:-47px;left:0" alt="" src="http://ir.ebaystatic.com/rs/v/apstidvcvu5pxlbxkphrrdo5iqv.png" id="gh-logo"></a><![endif]--><!--[if (gte IE 9)|!(IE)]><!--><a href="/">eBay<img width="250" height="200" style="clip:rect(47px, 118px, 95px, 0px); position:absolute; left: 150px;top: 3px;" alt="" src="http://ir.ebaystatic.com/rs/v/fxxj3ttftm5ltcqnto1o4baovyl.png" id="gh-logo"></a><!--<![endif]--></td><td class="gh-td-s"><form id="gh-f" method="get" action="/search"><table class="gh-tbl2"><tbody><tr><td class="gh-td-s"><div id="gh-ac-box"><div id="gh-ac-box2"><label for="gh-ac" class="gh-hdn g-hdn">Enter your search keyword</label><input type="text" class="gh-tb ui-autocomplete-input" size="50" maxlength="100" placeholder="Search..." id="gh-ac" name="_nkw" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"></div></div></td></td><td class="gh-td"><input type="submit" class="btn btn-prim gh-spr" id="gh-btn" value="Search"></td></tr></tbody></table></form></td>
 <div id="Center" class="rr_present">
 
-	<div id="CenterPanel" class="full-width left c-std">
+	<div id="CenterPanel" class="full-width left c-std" style="
+    position: absolute;
+    left: 250px;
+    top: 100px;
+    width: 1300px;
+">
 	<div id="CenterPanelInner">
 
 		<script type="text/javascript">/*
@@ -81,11 +93,12 @@ g.prototype.o=function(){for(var a=document.getElementsByTagName("img"),c=0;c<a.
 f.b=function(a,c){var d=window;if(d.addEventListener)d.addEventListener(a,c,!1);else if(d.attachEvent)d.attachEvent("on"+a,c);else{var b=d["on"+a];d["on"+a]=function(){c.call(this);b&&b.call(this)}}};
 f.m=function(a,c,d){function b(){if(!(e.f&&a||e.g)){var b=e.j;(new Date).getTime()-e.h>e.j&&(b=0);e.g=window.setTimeout(function(){e.h=(new Date).getTime();m(e);e.g=null},b)}}var e=new g(c);f.lazyLoadImages=e;e.c=d||500;f.b("load",function(){e.f=!0;e.e=a;m(e)});0!=c.indexOf("data")&&((new Image).src=c);f.b("scroll",b);f.b("resize",b)};f.lazyLoadInit=f.m;</script><script type="text/javascript"> pagespeed.lazyLoadInit(false, "http://p.ebaystatic.com/aw/pics/s_1x2.gif", 500);</script>
 <div id="ConstraintCaptionContainer" class="fpcc">
-		<span style="display:none"> <span class='keywordClass saveNameKw autClass-keyword' title='psv'> psv</span>: </span></div>
+		<span style="display:none"> <span class='keywordClass saveNameKw autClass-keyword' ></span>: </span></div>
 	
 	<b style="display:none">&nbsp;</b><div id="Results" class="">
 			<div class="rst" id="rsTabs">
 	<div class="t225">
+
 		<div id="SISPivotItemContainer" class="clear">
 				</div>
 			
@@ -186,7 +199,8 @@ f.m=function(a,c,d){function b(){if(!(e.f&&a||e.g)){var b=e.j;(new Date).getTime
 			$(document).trigger("RTM_REGISTER_PLACEMENTS",{'placementsInfo':[[876,0,0,0],[912,0,0,0],[433,0,0,0],[1650,3,0,0],[1651,3,0,0]]});
 		
 			window.setTimeout(function(){$(document).trigger("RTM_INIT",{'init':0});},0);
-		})();</script><script type="text/javascript">(function(){
+		})();</script>
+		<!--<script type="text/javascript">(function(){
 (function() {
 var Context = raptor.require('ebay.context.Context');
 Context.call(Context,{"site":0,"errors":{"enabled":false},"app":"raptor","domain":".ebay.com","pool":"production","cobrand":2,"locale":"en_US_MAIN","features":{},"pid":2045573});
