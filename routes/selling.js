@@ -126,7 +126,7 @@ function getSelling(req,res){
 				var price = rows[0].price;
 				var pictureUrl = rows2[0].pictureurl;
 				var quantity = rows[0].quantity;
-				//req.session.message = "";
+				
 				var message = req.session.message;
 				if(message == null) message = "";
 				
