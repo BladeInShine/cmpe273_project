@@ -1,7 +1,7 @@
 var sql_con = require('../conn');
 
 function search(req, res){
-	var key = req.params.keyword;
+	var key = req.query.keyword;
 	var pquery = "select product.id as 'id', name, pictureurl, sellorauction, price, currentprice from cmpe273project.product join cmpe273project.selling join cmpe273project.auction where product.id=selling.product or product.id=auction.product and product.name like '%"+key+"%' group by id order by id desc";
 	var ret = "";
 	
