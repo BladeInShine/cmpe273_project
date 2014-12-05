@@ -177,14 +177,32 @@ if(!req.isAuthenticated())
 		 res.redirect('/login');
 		}
 
-var rewSQL = "select * from review where user='"+req.user.email+"';";
-console.log("req.user"+req.user.lastname);
+var rewSQL = "select * from user where userid='"+req.user.userid+"';";
+
 connection.fetchData(rewSQL,function(error, rewData){
+	var id=req.user.userid;
+	var meID="";
+	if(id <10)
+		{
+		meID="100-00-000";
+		}
+	else if(id>=10&&id<100)
+		{
+		meID="100-00-00";
+		}
+	else if(id>=100&id<1000){
+		meID="100-00-0";
+	}
+	else if(id>=1000&id<10000)
+		{
+		meID="100-00-"
+		}
+	
 	res.render('myebay',{
 	user:req.user,
 	isAuthenticate: req.isAuthenticated(),
-	
-   rewData:rewData
+	info:rewData,
+	memID:meID
  })
 	
 	
@@ -271,6 +289,10 @@ function sellHis(req,res){
 	
 }
 function profileUpdate(req,res){
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
 	var userInfo="select * from user where userid="+req.user.userid+";";
 	sql.fetchData(userInfo,function(error,result)
 	{  console.log(result);
@@ -288,8 +310,23 @@ function profileUpdate(req,res){
 }
 
 function profileUpdatePost(req,res){
-	
-	
+	var pwd = req.body.password;  
+	var first = req.body.firstname;
+	var last = req.body.lastname;
+	var address=req.body.address;
+	var city=req.body.city;
+	var state=req.body.state;
+	var zip=req.body.zip;
+	var userSQL = "update user set password='"+pwd+"',firstname='"+first+"',lastname='"+last+"',address='"+address+"',city='"+city+"',state='"+state+"',zip='"+zip+"';";
+	sql.fetchData(userSQL,function(error,result){
+		
+		
+		
+	 res.redirect('/profile');
+		console.log(result);
+		
+		
+	})
 	
 }
 

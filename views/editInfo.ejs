@@ -65,8 +65,8 @@
 		<div id="top-nav">
 			<div class="topTitle">
 	<h1>
-	<span class="page-domain">My eBay </span>
-	
+	<span class="page-domain">My eBay: </span>
+	<span class="page-domain">Profile Update </span>
 		</h1>	
 	<span class="hidden" id="landing-page-url">http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;mode=0&amp;CurrentPage=MyeBayNextSummary&amp;SubmitAction.GeneralSettingsUpdateAction=x&amp;MyeBayDefaultPageDD=138</span>
 <!-- 	
@@ -75,7 +75,7 @@
 -->
 	<div class="mbg" role="application">
 		<span class="mbg-l" role="presentation">
-			<!-- <a class="profile" title="<%=user.email%>"><%=user.email%></a>  --><a href="">[Edit Profile]</a>
+			<!-- <a class="profile" title="<%=user.email%>"><%=user.email%></a>  -->
 			   
 		 
 	</div>
@@ -83,14 +83,7 @@
 	</div>
 <div class="tabbable">
 	<ul class="nav nav-tabs-p" role="navigation">
-	<li class="tab active">
-			<a href="#">Activity</a>
-					<ul class="nav-menu">
-					<li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextSummary&amp;ssPageName=STRK%3AME%3ALNLK%3AMESUMX&amp;_trksid=p2060778.m2034.l3382" title="Summary">Summary</a></li>
-					<li><a href="http://www.ebay.com/myb/WatchList?_trksid=p2060778.m2034.l3387" title="Watch">Watch</a></li>
-					<li><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextAllSelling&amp;ssPageName=STRK%3AME%3ALNLK%3AMESX&amp;_trksid=p2060778.m2295.l3934" title="Sell">Sell</a></li>
-					</ul>
-			</li>
+	
 	
 	</ul>
 	
@@ -102,7 +95,7 @@
 					</div>
 			<h2 class="gh-ar-hdn">Navigation Menu</h2>
 	<div class="menu-list" role="navigation">
-		<p class="menu-head selected"><a href="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;CurrentPage=MyeBayNextSummary&amp;ssPageName=STRK%3AME%3ALNLK%3AMESUMX&amp;_trksid=p2060778.m2034.l3382" _sp="p2060778.m2034.l3382">Summary<b class="gh-ar-hdn">Page</b></a></p>
+		<p class="menu-head selected"><a href="/profile">Summary<b class="gh-ar-hdn">Page</b></a></p>
 	    		<p class="menu-head mb0 expd" data-src="http://my.ebay.com/ws/eBayISAPI.dll?MyEbayBeta&amp;leftnav_buy=&amp;CurrentPage=MyeBayNextSummary&amp;SubmitAction.MyeBayLeftNav=x&amp;ChunkedRendOff=true"><a href="javascript:;" role="button" aria-expanded="true" class="menu-indicator menu-expd" title="Buy"><b class="gh-ar-hdn">BuyMenu</b></a>Buy</p>
 				<div style="display: block" class="menu-body">
 			    	<ul>
@@ -143,7 +136,7 @@
 		</div><!-- domain-nav -->
 		</div>
 
-
+   
     
 
        
@@ -154,40 +147,46 @@
             Edit Your Profile
           </h1>
 
-    <form id="phx-signup-form" method="POST" action="/auction" class="t1-form" enctype="multipart/form-data">
+    <form id="phx-signup-form" method="POST" action="/profileUpdate" class="t1-form" enctype="multipart/form-data">
 
   <div class="textbox">
 
       <div class="prompt name">
-  <label for="first-name" class="t1-label field-name"> First name</label>
+  <label  class="t1-label field-name"> First name</label>
   <div class="field" data-fieldname="name">
     
-    <input id="productname" type="text" autocomplete="off"  name="productname" maxlength="20" aria-required="true" value=<%=user.firstname%>>
+    <input id="productname" type="text" autocomplete="off"  name="firstname" maxlength="20" aria-required="true" value=<%=user.firstname%>>
   </div>
 </div>
 
 <div class="prompt name">
-  <label for="last-name" class="t1-label field-name">Last name</label>
+  <label  class="t1-label field-name">Last name</label>
   <div class="field" data-fieldname="name">
     
-    <input id="description" type="text" autocomplete="off" name="des" maxlength="20" aria-required="true" value=<%=user.lastname%>>
+    <input id="description" type="text" autocomplete="off" name="lastname" maxlength="20" aria-required="true" value=<%=user.lastname%>>
   </div>
 </div>
-
+<div class="prompt name">
+  <label  class="t1-label field-name">Password</label>
+  <div class="field" data-fieldname="name">
+    
+    <input id="description" type="password" autocomplete="off" name="password" maxlength="20" aria-required="true" value=<%=user.password%>>
+  </div>
+</div>
 
 <div>
 Address
   <div class="field" data-fieldname="country">
     
-    <input id="country" type="text" autocomplete="off" name="startprice" aria-required="true" value='<%=user.address%>'>
+    <input id="country" type="text" autocomplete="off" name="address" aria-required="true" value='<%=user.address%>'>
   </div>
     
 </div>
 <div>
 City
-  <div class="field" data-fieldname="zipcode">
+  <div class="field" data-fieldname="city">
     
-    <input id="zipcode" type="text" autocomplete="off" name="addprice" aria-required="true" value='<%=user.city%>'>
+    <input id="zipcode" type="text" autocomplete="off" name="city" aria-required="true" value='<%=user.city%>'>
   </div>
     
 </div>
