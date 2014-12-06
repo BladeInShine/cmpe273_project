@@ -78,9 +78,9 @@ app.get('/purhis', user.purHis);
 
 app.get('/sellhis', user.sellHis);
 
-app.get('/auchis', user.aucHis);
+//app.get('/auchis', user.aucHis);
 
-app.get('/bidhis', user.bidHis);
+//app.get('/bidhis', user.bidHis);
 
 app.get('/profileupdate', user.profileUpdate);
 	
@@ -152,6 +152,10 @@ app.get('/bidauction/:auctionid', auction.bidAuction);
 app.get('/bid/:auctionid', auction.getBid);
 
 app.post('/deleteAuction', auction.deleteAuction);
+
+app.get('/auchis', auction.getAucHis);
+
+app.get('/bidhis', auction.getBidHis); 
 
 
 //get a page for wiriting a review TBD

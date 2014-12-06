@@ -250,6 +250,80 @@ function bidAuction(req, res){
 	
 }
 
+//for bidder
+function getBidHis(req, res){
+	
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId=req.user.userid;
+	var userEmail = req.user.email;
+	var qS = "SELECT product.name as name, product.pictureurl as url, auction.currentprice as finalprice, bid.date as date FROM cmpe273project.auction auction join cmpe273project.product product join cmpe273project.bid bid where auction.id = bid.auction and product.id = auction.product and bid.finalbid = 'true' and bid.bidder = '" + userEmail + "';";
+	
+	sql_con.fetchData(qS, function(error, rows){
+			
+			if(rows == null || rows.length < 1){
+				
+				res.render('404page', {message : "No such bid history."});
+				return;
+			}
+			
+			var qS2 = "SELECT product.name as name, product.pictureurl as url, bid.price as price, bid.date as date FROM cmpe273project.auction auction join cmpe273project.product product join cmpe273project.bid bid where auction.id = bid.auction and product.id = auction.product and auction.inprogress = 'true' and bid.bidder = '" + userEmail + "';";
+			
+			sql_con.fetchData(qS2, function(error, rows2){
+				
+				if(rows2 == null || rows2.length < 1){
+					
+					res.render('404page', {message : "No such bid history."});
+					return;
+				}
+				
+				res.render('bidhis', {winBids: rows, onGBids: rows2});
+				
+			});
+				
+			
+	});
+	
+}
+
+//for seller
+function getAucHis(req, res){
+	
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId=req.user.userid;
+	var userEmail = req.user.email;
+	var qS = "SELECT product.name as name, product.pictureurl as url, auction.currentprice as finalprice, bid.date as date FROM cmpe273project.auction auction join cmpe273project.product product join cmpe273project.bid bid where auction.id = bid.auction and product.id = auction.product and auction.inprogress = 'false' and product.owner = "+ userId +" and bid.finalbid = 'true';";
+		
+	sql_con.fetchData(qS, function(error, rows){
+			
+			if(rows == null || rows.length < 1){
+				
+				res.render('404page', {message : "No such auction history."});
+				return;
+			}
+			
+			var qS2 = "SELECT product.name as name, product.pictureurl as url, auction.currentprice as currentprice FROM cmpe273project.auction auction join cmpe273project.product product where product.id = auction.product and auction.inprogress = 'true' and product.owner = 1;";
+			
+			sql_con.fetchData(qS2, function(error, rows2){
+				
+				if(rows2 == null || rows2.length < 1){
+					
+					res.render('404page', {message : "No such auction history."});
+					return;
+				}
+				
+				res.render('auchis', {completeAucs: rows, onGAucs: rows2});
+			});
+			
+	});
+	
+}
+
 function deleteAuction(req, res){}
 
 exports.getAllAuction = getAllAuction;
@@ -259,3 +333,5 @@ exports.createAuctionPage = createAuctionPage;
 exports.bidAuction = bidAuction;
 exports.deleteAuction = deleteAuction;
 exports.getBid = getBid;
+exports.getBidHis = getBidHis;
+exports.getAucHis = getAucHis;
