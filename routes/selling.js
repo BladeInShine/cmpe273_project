@@ -119,7 +119,11 @@ function getSelling(req,res){
 			qS2 = "SELECT * FROM `cmpe273project`.`product` WHERE id = '" + rows[0].product + "';";
 			
 			sql_con.fetchData(qS2, function(error, rows2){
-				
+				var canEdit = "false";
+				var userId = 1;
+				var ownerId = rows2[0].owner;
+				if(userId == ownerId) canEdit = "true";
+				console.log("I can edit or not"+ canEdit);
 				var productId = rows[0].product;
 				var condition = rows2[0].condi;
 				var name = rows2[0].name;
@@ -129,8 +133,8 @@ function getSelling(req,res){
 				
 				var message = req.session.message;
 				if(message == null) message = "";
-				
-				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, message: message});
+				//res.render('sell',{canEdit: canEdit});
+				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, message: message, canEdit: canEdit});
 			});
 		}
 
@@ -152,10 +156,71 @@ function createSellingPage(req,res){
 	
 		}
 }
+function editSellPage(req,res){
+	if(false){res.redirect('/login');}
+	else{
+		var sellingId = req.params.sellingid;
+		res.render('editSelling',{sellingId: sellingId});
+	}
+}
+function editSellInfo(req,res){
+	
+	//if(!req.isAuthenticated()){res.redirect('/login');}
+	console.log("Inside editSellInfo");
 
+	console.log(req.files);
+	
+//	fs.readFile(req.files.image.path, function (err, data) {
+//		  // ...
+//		  var newPath = __dirname + "/images/";
+//		  fs.writeFile(newPath, data, function (err) {
+//		  });
+//		});
+	var sellingId = req.params.sellingid;
+	var len = req.files.image.path.length;
+	var pictureUrl = req.files.image.path.substring(42,len);
+	var name = req.body.productname; 
+	var des = req.body.des;
+	var owner = 1;
+	var cat = req.body.cat;
+	var condition = req.body.condition;
+	var quantity = req.body.quantity;
+	var price = req.body.price;
+	var productId;
+	
+	//var soa = "sell";
+	
+	var qS4 =  "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
+	sql_con.fetchData(qS4, function(error, rows4){
+		productId = rows4[0].product;	
+	});
+	var qS5 = "update `cmpe273project`.`product` set name = '"+ name +"', description = '"+ des +"', cat = '"+ cat +"', pictureurl = '"+pictureUrl+"', condi = '"+ condition +"' where id ='"+productId+"'";
+	sql_con.fetchData(qS5, function(error, rows5){	
+		var dateObj = new Date();
+		var month = dateObj.getUTCMonth() + 1; //months from 1-12
+		var day = dateObj.getUTCDate();
+		var year = dateObj.getUTCFullYear();
+		var date = month + "/" + day + "/" + year;
+		
+		var startDate = date;
+		//var seller = 1;
+		
+		var qS6 = "update `cmpe273project`.`selling` set price = '"+ price +"', startdate = '"+startDate+"', quantity = '"+ quantity +"' where sellingId = '"+ sellingId+"'";
+
+		sql_con.fetchData(qS6, function(error, rows6){
+			
+			res.redirect('/selling/' + sellingId);
+			
+		});
+			
+	});	
+			
+}
 exports.getAllSelling = getAllSelling;
 exports.createSelling = createSelling;
 exports.deleteSelling = deleteSelling;
 exports.buyProduct = buyProduct;
 exports.getSelling = getSelling;
 exports.createSellingPage = createSellingPage;
+exports.editSellPage = editSellPage;
+exports.editSellInfo = editSellInfo;

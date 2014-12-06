@@ -204,6 +204,12 @@ width:35%;
 <a name="mainContent" tabindex="-1"></a>
 	<div style="">
 		<h1 class="it-ttl" itemprop="name" id="itemTitle"><span class="g-hdn">Details about  &nbsp;</span><%=productname%></h1>
+		
+		<%if(canEdit == "true"){%>
+		 <span class="">
+                <a href="/editSelling/<%= sellingId%>">Edit</a>
+         </span>	
+        <%}%> 
 				<!-- DO NOT change linkToTagId="rwid" as the catalog response has this ID set  -->
 		</div>
 	<div class="it-rlBr  it-rlBr500 " style="">
@@ -248,6 +254,8 @@ width:35%;
 						<span class="">
 						<%= quantity%> available</span>
 					</span>
+					
+					
 					<span class="mi-er"><i class="spr icser"></i><span class="sd-err" id="errf" tabindex="-1"><%=message%></span></span>
 				<!--   <span class="vi-qty-vert-algn vi-qty-slash"> / </span>   -->
        
