@@ -2,8 +2,7 @@ var ejs = require('ejs');
 var sql = require('../conn');
 var connection= require('../conn');
 var passpport=require('passport');
-
-
+var pdts=[];
 function getAllCat(req,res) {
 	var proSQL="select * from cat ;"
 		if(req.user.email=="admin@ebay.com")
@@ -14,13 +13,12 @@ function getAllCat(req,res) {
 						cat:result,
 						mes:mes
 						
-					});
-					
-					
+					});					
 				})	
 			}
 		 else {
 			 res.redirect('/login');
+			 
 		}
 			
 }
@@ -29,27 +27,21 @@ function getCat(req,res) {
 var catname=req.param('catname');
 console.log("catname:"+catname);
 
-var pdtSQL="select * from product where cat='"+catname+"';";
-var catQuery= "select * from cat";
-sql.fetchData(catQuery, function(error, cats){
 
-	sql.fetchData(pdtSQL,function(error,result){
+var catSQL="select * from product where cat='"+catname+"';";
+
+sql.fetchData(catSQL,function(error,result){
 	
-		res.render('oneCat',{
-			isAuthenticate: req.isAuthenticated(),
-			pdts:result,
-			catname:catname,
-		    cat:cats,
-		    user:req.user
-		
+	res.render('oneCat',{
+		pdts:result,
+		isAuthenticate: req.isAuthenticated(),
+		cat:catname,
+		user:req.user
 	})
 	
 	
-	
-});
-});
+})
 		
-
 
 }
 

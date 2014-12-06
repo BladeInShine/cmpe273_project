@@ -4,7 +4,12 @@ var sql_con = require('../conn'),
 
 function getAllAuction(req, res){
 	
-	console.log("Hi");
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId = req.user.userid;
+	
 	var qS = "select * from `cmpe273project`.`auction`;";
 
 	sql_con.fetchData(qS, function(error, rows){
@@ -14,14 +19,30 @@ function getAllAuction(req, res){
 }
 
 function getAuction(req, res){
-	console.log("papapa");
+	
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId = req.user.userid;
+	var userEmail = req.user.email;
 	var auctionId = req.params.auctionid;
 	
 	var qS = "SELECT * FROM `cmpe273project`.`auction` WHERE id = '" + auctionId + "';";
 
 	sql_con.fetchData(qS, function(error, rows){
 		
-		if(rows != null && rows.length > 0){
+		if(rows == null || rows.length < 1){
+			
+			res.render('404page', {message : "No such selling."});
+			return;
+		}
+		
+		if(rows[0].inprogress == 'false'){
+			
+			res.render("auctionclosed");
+		}
+		else if(rows != null && rows.length > 0){
 			
 			qS2 = "SELECT * FROM `cmpe273project`.`product` WHERE id = '" + rows[0].product + "';";
 			
@@ -32,8 +53,15 @@ function getAuction(req, res){
 				var name = rows2[0].name;
 				var addPrice = rows[0].addprice;
 				var bidNum = rows[0].bidnum;
+				var minRemain = parseInt(rows[0].minremain);
+				
+				var days = parseInt(minRemain/(24*60));
+				var hours = parseInt(minRemain%(24*60)/60);
+				var mins = minRemain%(24*60)%60;
+				var timeRemain = days + ' days ' + hours + ' hours ' + mins + ' mins';
+				
 				var pictureUrl = rows2[0].pictureurl;
-				res.render('auction',{email : "a", productname: name, currentprice: currentPrice, condition: condition, addprice: addPrice, bidnum: bidNum, pictureurl: pictureUrl, auctionid: auctionId});
+				res.render('auction',{email : userEmail, productname: name, currentprice: currentPrice, condition: condition, addprice: addPrice, bidnum: bidNum, pictureurl: pictureUrl, auctionid: auctionId, timeremain:timeRemain});
 			});
 		}
 
@@ -41,7 +69,12 @@ function getAuction(req, res){
 }
 
 function createAuction(req, res){
-	
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId=req.user.userid;
+	var userEmail = req.user.email;
 	//if(!req.isAuthenticated()){res.redirect('/login');}
 	console.log("Inside createAuction");
 
@@ -51,15 +84,14 @@ function createAuction(req, res){
 	var pictureUrl = req.files.image.path.substring(42,len);
 	var name = req.body.productname; 
 	var des = req.body.des;
-	var owner = 2;
 	var cat = req.body.cat;
 	var condition = req.body.condition;
 	var soa = "auction";
 	
-	var qS = "INSERT INTO `cmpe273project`.`product` (`name`, `description`, `owner`, `cat`, `pictureurl`, `sellorauction`, `condi`) VALUES ('" + name + "', '" + des + "', 1, '" + cat + "', '" + pictureUrl + "', '" + soa + "', '" + condition + "');";
+	var qS = "INSERT INTO `cmpe273project`.`product` (`name`, `description`, `owner`, `cat`, `pictureurl`, `sellorauction`, `condi`) VALUES ('" + name + "', '" + des + "', " + userId + ", '" + cat + "', '" + pictureUrl + "', '" + soa + "', '" + condition + "');";
 	sql_con.insert(qS);
 	
-	var qS2 = "SELECT * FROM `cmpe273project`.`product` WHERE name = '" + name + "' and description = '" + des + "' and owner = 1 and cat = '" + cat + "' and pictureurl = '" + pictureUrl + "' and sellorauction = '" + soa + "' and condi = '" + condition + "';";
+	var qS2 = "SELECT * FROM `cmpe273project`.`product` WHERE name = '" + name + "' and description = '" + des + "' and owner = " + userId + " and cat = '" + cat + "' and pictureurl = '" + pictureUrl + "' and sellorauction = '" + soa + "' and condi = '" + condition + "';";
 	
 	sql_con.fetchData(qS2, function(error, rows){
 		
@@ -74,16 +106,17 @@ function createAuction(req, res){
 		var date = month + "/" + day + "/" + year;
 		
 		var startDate = date;
-		var seller = 1;
 		var startPrice = req.body.startprice;
 		var addPrice = req.body.addprice;
 		var inProgress = "true";
+		var duration = req.body.duration;
+		var minRemain = parseInt(duration) * 24 * 60;
 		
-		var qS = "INSERT INTO `cmpe273project`.`auction` (`product`, `startdate`, `seller`, `startprice`, `addprice`, `inprogress`, `currentprice`, `bidnum`) VALUES ('" + productId + "', '" + startDate + "', '" + seller +  "', '" + startPrice + "', '" + addPrice + "', '" + inProgress + "', '" + startPrice + "', '" + 0 + "');";
+		var qS = "INSERT INTO `cmpe273project`.`auction` (`product`, `startdate`, `seller`, `startprice`, `addprice`, `minremain`, `inprogress`, `currentprice`, `bidnum`) VALUES ('" + productId + "', '" + startDate + "', '" + userId +  "', '" + startPrice + "', '" + addPrice + "', '" + minRemain + "', '" + inProgress + "', '" + startPrice + "', '" + 0 + "');";
 
 		sql_con.insert(qS);
 		
-		var qS3 = "SELECT * FROM `cmpe273project`.`auction` WHERE product = '" + productId + "' and startdate = '" + startDate + "' and seller = '" + seller + "' and startprice = '" + startPrice + "' and addprice = '" + addPrice + "' and inprogress = '" + inProgress + "' and currentprice = '" + startPrice + "' and bidnum = '" + 0 + "';";
+		var qS3 = "SELECT * FROM `cmpe273project`.`auction` WHERE product = '" + productId + "' and startdate = '" + startDate + "' and seller = '" + userId + "' and startprice = '" + startPrice + "' and addprice = '" + addPrice + "' and inprogress = '" + inProgress + "' and currentprice = '" + startPrice + "' and bidnum = '" + 0 + "';";
 
 		sql_con.fetchData(qS3, function(error, rows2){
 			
@@ -98,6 +131,13 @@ function createAuction(req, res){
 }
 
 function createAuctionPage(req, res){
+	
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId=req.user.userid;
+	var userEmail = req.user.email;
 	
 	if(false){res.redirect('/login');}
 	
@@ -115,18 +155,45 @@ function createAuctionPage(req, res){
 
 function getBid(req, res){
 	
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId=req.user.userid;
+	var userEmail = req.user.email;
+	
 	var auctionId = req.params.auctionid;
 	
 	qS = "SELECT * FROM `cmpe273project`.`bid` WHERE auction = " + auctionId + ";";
 	sql_con.fetchData(qS, function(error, rows){
+		
+		if(rows == null || rows.length < 1){
+			
+			res.render('404page', {message : "No such bid history."});
+			return;
+		}
 
 		qS2 = "SELECT * FROM `cmpe273project`.`auction` WHERE id = " + auctionId + ";";
 		sql_con.fetchData(qS2, function(error, rows2){
 			
+			if(rows2 == null || rows2.length < 1){
+				
+				res.render('404page', {message : "No such auction."});
+				return;
+			}
+			
+			var minRemain = parseInt(rows2[0].minremain);
+			
+			var days = parseInt(minRemain/(24*60));
+			var hours = parseInt(minRemain%(24*60)/60);
+			var mins = minRemain%(24*60)%60;
+			var timeRemain = days + ' days ' + hours + ' hours ' + mins + ' mins';
+			
 			var bidNum = rows2[0].bidnum;
 			var startPrice = rows2[0].startprice;
 			var startDate = rows2[0].startdate;
-			res.render('bids', {bids: rows, bidnum: bidNum, startprice: startPrice, startdate: startDate});
+			
+			res.render('bids', {bids: rows, bidnum: bidNum, startprice: startPrice, startdate: startDate, auctionid: auctionId, email: req.user.email, timeremain: timeRemain});
 		});
 		
 });
@@ -135,30 +202,50 @@ function getBid(req, res){
 
 function bidAuction(req, res){
 	
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId=req.user.userid;
+	var userEmail = req.user.email;
+	
 	var auctionId = req.params.auctionid;
 	var qS = "SELECT * FROM `cmpe273project`.`auction` WHERE id = " + auctionId + ";";
 	sql_con.fetchData(qS, function(error, rows){
-		var auctionId = req.params.auctionid;
-		var currentPrice = rows[0].currentprice;
-		var bidNum = parseInt(rows[0].bidnum) + 1;
-		var price = rows[0].addprice + currentPrice;
-		var bidder = 'a';
 		
-		var dateObj = new Date();
-		var month = dateObj.getUTCMonth() + 1; //months from 1-12
-		var day = dateObj.getUTCDate();
-		var year = dateObj.getUTCFullYear();
-		var date = month + "/" + day + "/" + year;
+		if(rows == null || rows.length < 1){
+			
+			res.render('404page', {message : "No such auction."});
+			return;
+		}
 		
-		qS2 = "INSERT INTO `cmpe273project`.`bid` (`auction`, `price`, `bidder`, `date`, `finalbid`) VALUES ('" + auctionId + "', " + price + ", '" + bidder + "' , '" + date + "', '" + false + "');";
-		sql_con.insert(qS2);
-		
-		qS3 = "UPDATE `cmpe273project`.`auction` SET `bidnum`='" + bidNum + "' WHERE `id`='"+ auctionId + "';";
-		sql_con.insert(qS3);
-		
-		qS3 = "UPDATE `cmpe273project`.`auction` SET `currentprice`='" + price + "' WHERE `id`='"+ auctionId + "';";
-		sql_con.insert(qS3);
-		res.redirect('/bid/' + auctionId);
+		if(rows[0].inprogress == 'false'){
+			
+			res.render("auctionclosed");
+		}
+		else{
+			
+			var auctionId = req.params.auctionid;
+			var currentPrice = rows[0].currentprice;
+			var bidNum = parseInt(rows[0].bidnum) + 1;
+			var price = rows[0].addprice + currentPrice;
+			
+			var dateObj = new Date();
+			var month = dateObj.getUTCMonth() + 1; //months from 1-12
+			var day = dateObj.getUTCDate();
+			var year = dateObj.getUTCFullYear();
+			var date = month + "/" + day + "/" + year;
+			
+			qS2 = "INSERT INTO `cmpe273project`.`bid` (`auction`, `price`, `bidder`, `date`, `finalbid`) VALUES ('" + auctionId + "', " + price + ", '" + userEmail + "' , '" + date + "', '" + false + "');";
+			sql_con.insert(qS2);
+			
+			qS3 = "UPDATE `cmpe273project`.`auction` SET `bidnum`='" + bidNum + "' WHERE `id`='"+ auctionId + "';";
+			sql_con.insert(qS3);
+			
+			qS3 = "UPDATE `cmpe273project`.`auction` SET `currentprice`='" + price + "' WHERE `id`='"+ auctionId + "';";
+			sql_con.insert(qS3);
+			res.redirect('/bid/' + auctionId);
+		}
 	});
 	
 }

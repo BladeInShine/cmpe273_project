@@ -130,6 +130,10 @@ app.post('/selling', selling.createSelling);
 
 app.post('/deleteselling', selling.deleteSelling);
 
+app.get('/editSelling/:sellingid', selling.editSellPage);
+
+app.post('/editSelling/:sellingid', selling.editSellInfo);
+
 
 //get all auctions, in json format TBD
 app.get('/auction', auction.getAllAuction);
@@ -161,7 +165,7 @@ app.get('/review/:userid', review.getReview);
 app.post('/deletereview', review.deleteReview);
 
 
-app.get('/search/:keyword', search.search);
+app.get('/search', search.search);
 
 
 app.get('/cart/:userid', cart.getCart);
@@ -177,3 +181,38 @@ app.listen(port,function(){
 	console.log('http://127.0.0.1:'+port+'/');
   
   });
+
+//while(true){console.log("here");}
+setInterval(function(){
+	
+	console.log("Timer here"); 
+	var qS = "select * from `cmpe273project`.`auction` where inprogress != 'false';";
+	con.fetchData(qS, function(error, rows){
+		
+		for(var i = 0; i < rows.length; i ++){
+			
+			var minR = rows[i].minremain - 1;
+			var auctionId = rows[i].id;
+			var qS2 = "";
+			if(minR <= 0){
+				
+				qS2 = "UPDATE `cmpe273project`.`auction` SET `minremain`='" + 0 + "', `inprogress`='false' WHERE `id`='" + auctionId + "';";
+				con.insert(qS2);
+				var qS3 = "SELECT id from `cmpe273project`.`bid` where auction = " + auctionId + " and price = " + rows[i].currentprice + ";";
+				con.fetchData(qS3, function(error, rows2){
+					
+					var qS4 = "UPDATE `cmpe273project`.`bid` SET `finalbid`='true' WHERE `id`='" + rows2[0].id + "';";
+					con.insert(qS4);
+				});
+			}
+			else{
+				
+				qS2 = "UPDATE `cmpe273project`.`auction` SET `minremain`='" + minR + "' WHERE `id`='" + rows[i].id + "';";
+				con.insert(qS2);
+			
+			}
+			
+		}
+	});
+	
+}, 60000);
