@@ -170,7 +170,7 @@ function editSellInfo(req,res){
 
 	console.log(req.files);
 	
-//	fs.readFile(req.files.image.path, function (err, data) {
+// fs.readFile(req.files.image.path, function (err, data) {
 //		  // ...
 //		  var newPath = __dirname + "/images/";
 //		  fs.writeFile(newPath, data, function (err) {
