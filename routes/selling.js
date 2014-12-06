@@ -142,6 +142,9 @@ function getSelling(req,res){
 }
 
 function createSellingPage(req,res){
+	if(!req.isAuthenticated()){
+		 res.redirect('/login');
+	}
 	if(false){res.redirect('/login');}
 	
 		else{
@@ -160,7 +163,15 @@ function editSellPage(req,res){
 	if(false){res.redirect('/login');}
 	else{
 		var sellingId = req.params.sellingid;
-		res.render('editSelling',{sellingId: sellingId});
+		var qS = "SELECT * FROM cmpe273project.cat;";
+		
+		sql_con.fetchData(qS, function(error, rows){
+			
+			//res.render('sellingcreation', {cats: rows});
+			res.render('editSelling',{sellingId: sellingId, cats: rows});
+			
+		});
+		
 	}
 }
 function editSellInfo(req,res){
@@ -193,27 +204,28 @@ function editSellInfo(req,res){
 	var qS4 =  "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
 	sql_con.fetchData(qS4, function(error, rows4){
 		productId = rows4[0].product;	
-	});
-	var qS5 = "update `cmpe273project`.`product` set name = '"+ name +"', description = '"+ des +"', cat = '"+ cat +"', pictureurl = '"+pictureUrl+"', condi = '"+ condition +"' where id ='"+productId+"'";
-	sql_con.fetchData(qS5, function(error, rows5){	
-		var dateObj = new Date();
-		var month = dateObj.getUTCMonth() + 1; //months from 1-12
-		var day = dateObj.getUTCDate();
-		var year = dateObj.getUTCFullYear();
-		var date = month + "/" + day + "/" + year;
-		
-		var startDate = date;
-		//var seller = 1;
-		
-		var qS6 = "update `cmpe273project`.`selling` set price = '"+ price +"', startdate = '"+startDate+"', quantity = '"+ quantity +"' where sellingId = '"+ sellingId+"'";
+		var qS5 = "update `cmpe273project`.`product` set name = '"+ name +"', description = '"+ des +"', cat = '"+ cat +"', pictureurl = '"+pictureUrl+"', condi = '"+ condition +"' where id ='"+productId+"'";
+		sql_con.fetchData(qS5, function(error, rows5){	
+			var dateObj = new Date();
+			var month = dateObj.getUTCMonth() + 1; //months from 1-12
+			var day = dateObj.getUTCDate();
+			var year = dateObj.getUTCFullYear();
+			var date = month + "/" + day + "/" + year;
+			
+			var startDate = date;
+			//var seller = 1;
+			
+			var qS6 = "update `cmpe273project`.`selling` set price = '"+ price +"', startdate = '"+startDate+"', quantity = '"+ quantity +"' where id = '"+ sellingId+"'";
 
-		sql_con.fetchData(qS6, function(error, rows6){
-			
-			res.redirect('/selling/' + sellingId);
-			
-		});
-			
-	});	
+			sql_con.fetchData(qS6, function(error, rows6){
+				
+				res.redirect('/selling/' + sellingId);
+				
+			});
+				
+		});	
+	});
+	
 			
 }
 exports.getAllSelling = getAllSelling;
