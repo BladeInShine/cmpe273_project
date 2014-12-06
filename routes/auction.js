@@ -34,7 +34,7 @@ function getAuction(req, res){
 		
 		if(rows == null || rows.length < 1){
 			
-			res.render('404page', {message : "No such selling."});
+			res.render('404page', {message : "No such auction."});
 			return;
 		}
 		
@@ -324,6 +324,47 @@ function getAucHis(req, res){
 	
 }
 
+function checkOut(req, res){
+	
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	var userId=req.user.userid;
+	var userEmail = req.user.email;
+	
+	var qS = "SELECT * from cart where userid = " + userId + "";
+	
+	sql_con.fetchData(qS, function(error, rows){
+		
+		if(rows == null || rows.length < 1){
+			
+			res.render('404page', {message : "Shopping cart is empty."});
+			return;
+		}
+		
+		for(var i = 0; i < rows.lenght; i ++){
+			
+			var cartId = rows[i].cartid;
+			var sellingId = rows[i].sellingid;
+			var dateObj = new Date();
+			var month = dateObj.getUTCMonth() + 1; //months from 1-12
+			var day = dateObj.getUTCDate();
+			var year = dateObj.getUTCFullYear();
+			var date = month + "/" + day + "/" + year;
+			
+			var qS2 = "INSERT INTO `cmpe273project`.`buying` ( `selling`, `buyer`, `date`) VALUES ( '" + sellingId + "', '" + userId + "', '" + date + "');";
+			sql_con.insert(qS2);
+			var qS2 = "DELETE FROM `cmpe273project`.`cart` WHERE `cartid`='" + cartId + "';";
+			sql_con.insert(qS2);
+		}
+		
+		res.render('chechout');
+	});
+	
+	res.render('checkout');
+}
+
 function deleteAuction(req, res){}
 
 exports.getAllAuction = getAllAuction;
@@ -335,3 +376,4 @@ exports.deleteAuction = deleteAuction;
 exports.getBid = getBid;
 exports.getBidHis = getBidHis;
 exports.getAucHis = getAucHis;
+exports.chechOut = checkOut;

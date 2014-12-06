@@ -157,6 +157,8 @@ app.get('/auchis', auction.getAucHis);
 
 app.get('/bidhis', auction.getBidHis); 
 
+app.get('/checkout', auction.chechOut);
+
 
 //get a page for wiriting a review TBD
 app.get('/createreview/:sellingid', review.getReviewPage);
