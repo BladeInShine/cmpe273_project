@@ -167,7 +167,7 @@ else{%>
      
 <%}
 %>
- <%  if(i>4&&i<6)
+ <%  if(i>=4&&i<6)
      {%><div class="l2Wpr" style="position:absolute; left:740px; top:<%=270*(i%2-1)+440%>px">
 													<div class="cont topcat topcatl12lrg">
 	<div class="flm" style="z-index:0">
@@ -184,6 +184,60 @@ else{%>
      
 <%}
 %>
+
+<%  if(i>=6&&i<8)
+     {%><div class="l2Wpr" style="position:absolute; left:1060px; top:<%=270*(i%2-1)+440%>px">
+													<div class="cont topcat topcatl12lrg">
+	<div class="flm" style="z-index:0">
+		<div class="simg">
+			<a href="/cat/<%=cat[i].catname%>" title="<%=cat[i].catname%>"><img src="http://i.ebayimg.com/00/s/NTAwWDUwMA==/$T2eC16R,!)IFIeCjOKBnBSIt49T(Y!~~60_116.JPG" border="0" alt="Fiction &amp; Literature"></a>
+				</div>
+	</div>
+	<div class="btm">
+			<ul id="bc">
+			  	<li><a href="/cat/<%=cat[i].catname%>" class="imgTitle ellipsis-title" title="<%=cat[i].catname%>"><%=cat[i].catname%></a></li>
+			</ul>
+		</div>									
+	</div></div>  
+<%}
+%>
+
+<%  if(i>=8&&i<10)
+     {%><div class="l2Wpr" style="position:absolute; left:1380px; top:<%=270*(i%2-1)+440%>px">
+													<div class="cont topcat topcatl12lrg">
+	<div class="flm" style="z-index:0">
+		<div class="simg">
+			<a href="/cat/<%=cat[i].catname%>" title="<%=cat[i].catname%>"><img src="http://i.ebayimg.com/00/s/NTAwWDUwMA==/$T2eC16R,!)IFIeCjOKBnBSIt49T(Y!~~60_116.JPG" border="0" alt="Fiction &amp; Literature"></a>
+				</div>
+	</div>
+	<div class="btm">
+			<ul id="bc">
+			  	<li><a href="/cat/<%=cat[i].catname%>" class="imgTitle ellipsis-title" title="<%=cat[i].catname%>"><%=cat[i].catname%></a></li>
+			</ul>
+		</div>									
+	</div></div>
+     
+<%}
+%>
+
+<%  if(i>=10){%>
+
+<div class="l2Wpr" style="position:absolute; left:1700px; top:<%=270*(i%2-1)+440%>px">
+													<div class="cont topcat topcatl12lrg">
+	<div class="flm" style="z-index:0">
+		<div class="simg">
+			<a href="/cat/<%=cat[i].catname%>" title="<%=cat[i].catname%>"><img src="http://i.ebayimg.com/00/s/NTAwWDUwMA==/$T2eC16R,!)IFIeCjOKBnBSIt49T(Y!~~60_116.JPG" border="0" alt="Fiction &amp; Literature"></a>
+				</div>
+	</div>
+	<div class="btm">
+			<ul id="bc">
+			  	<li><a href="/cat/<%=cat[i].catname%>" class="imgTitle ellipsis-title" title="<%=cat[i].catname%>"><%=cat[i].catname%></a></li>
+			</ul>
+		</div>									
+	</div></div>
+     
+<%}%>
+
     <%}
 	%>
 	<!-- <div class="l2Wpr">
