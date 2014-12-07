@@ -108,7 +108,7 @@ function buyProduct(req,res){
 	
 	
 }
-
+//why
 function getSelling(req,res){
 	if(!req.isAuthenticated()){
 		 res.redirect('/login');
