@@ -110,9 +110,11 @@ function buyProduct(req,res){
 }
 //why
 function getSelling(req,res){
-	if(!req.isAuthenticated()){
+	if(!req.isAuthenticated())
+	 {
 		 res.redirect('/login');
-	}
+		}
+	else{
 	console.log("sellinggggggg");
 	var sellingId = req.params.sellingid;
 	var err = req.query.err;
@@ -151,8 +153,9 @@ function getSelling(req,res){
 				res.render('selling',{email : userEmail, productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, canEdit: canEdit, err: err});
 			});
 		}
-
+		
 	});
+	}
 }
 
 function createSellingPage(req,res){
