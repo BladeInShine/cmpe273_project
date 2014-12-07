@@ -270,11 +270,11 @@ function sellHis(req,res){
 		 res.redirect('/login');
 		}
 	var user=req.user.userid;
-	var hisSQL="select selling.id as 'sellid',product.id as'pdtid', startdate,name,description,price,quantity from cmpe273project.user join cmpe273project.selling join cmpe273project.product where user.userid=product.owner and selling.product =product.id and user.userid="+user+";";
+	var hisSQL="select selling.id as 'sellid',product.id as'pdtid', startdate,name,description,price,quantity , product.pictureurl as'url'from cmpe273project.user join cmpe273project.selling join cmpe273project.product where user.userid=product.owner and selling.product =product.id and user.userid="+user+";";
 	console.log(req.user.id);
     sql.fetchData(hisSQL,function(error,result){
     	console.log(result);
-    	res.render('sellHis',{
+    	res.render('sellhis',{
     		
     		data:result,
     		user:req.user,
@@ -330,16 +330,7 @@ function profileUpdatePost(req,res){
 	
 }
 
-function aucHis(req,res){
-	
-	
-	
-}
-function bidHis(req,res){
-	
-	
-	
-}
+
 
 function serializeUser(user,done){
 	done(null,user.email);
@@ -376,6 +367,5 @@ exports.logout=logout;
 exports.purHis=purHis;
 exports.profileUpdatePost=profileUpdatePost;
 exports.profileUpdate=profileUpdate;
-exports.aucHis=aucHis;
-exports.bidHis=bidHis;
+
 exports.sellHis=sellHis;
