@@ -37,30 +37,37 @@ function getReview(req, res){
 	var uid = req.params.userid;
 	var query = "select * from cmpe273project.user where userid="+uid;
 	var qS = "select * from cmpe273project.review join cmpe273project.selling join cmpe273project.product join cmpe273project.user where selling=selling.id and product = product.id and owner=userid and owner="+uid;
+	var pos = 0;
+	var neu = 0;
+	var neg = 0;
 	sql_con.fetchData(query,function(error,data){
 		var user = data[0].firstname.charAt(0)+". "+data[0].lastname;
 		sql_con.fetchData(qS, function(error, rows){
 			
 			var rev = "";
 			var src = "";
+			
 			if(rows.length>0){
 				
 				for(var i=0;i<rows.length;i++){
 					var rate = rows[i].rate;
 					if(rate=='1'){
 						src = "http://q.ebaystatic.com/aw/pics/icon/iconPos_16x16.gif";
+						pos+=1;
 					}
 					else if(rate=='0'){
 						src = "http://q.ebaystatic.com/aw/pics/icon/iconNeu_16x16.gif";
+						neu+=1;
 					}
 					else if(rate=='2'){
 						src = "http://q.ebaystatic.com/aw/pics/icon/iconNeg_16x16.gif";
+						neg+=1;
 					}
 					rev+='<tr><td><img src="'+src+'" height="16" width="16"></td><td>'+rows[i].comments+'</td><td nowrap="nowrap" id="memberBadgeId">Buyer:<div class="mbg"><span class="mbg-nw">'+rows[i].user.charAt(0)+rows[i].user.charAt(1)+'***</span></div></td></tr><tr class="bot"><td>&nbsp;</td><td>'+rows[i].name+'</td><td>$ '+rows[i].price.toFixed(2)+'</td></tr>';
 				}
 			}
 			
-			res.render('getReview',{review: rev, uname: user, user:req.user, isAuthenticate: req.isAuthenticated()});
+			res.render('getReview',{review: rev, uname: user, user:req.user, isAuthenticate: req.isAuthenticated(), pos: pos, neu: neu, neg: neg});
 		});
 	});
 	
