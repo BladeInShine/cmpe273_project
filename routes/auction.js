@@ -313,11 +313,7 @@ function getAucHis(req, res){
 			
 			sql_con.fetchData(qS2, function(error, rows2){
 				
-//				if(rows2 == null || rows2.length < 1){
-//					
-//					res.render('404page', {message : "No such auction history."});
-//					return;
-//				}
+             console.log(rows2);
 				
 				res.render('auchis', {ca: rows, oa: rows2, user: req.user});
 			});
