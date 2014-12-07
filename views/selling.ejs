@@ -205,6 +205,10 @@ width:35%;
 	<div style="">
 		<h1 class="it-ttl" itemprop="name" id="itemTitle"><span class="g-hdn">Details about  &nbsp;</span><%=productname%></h1>
 		
+		<span class="">
+	    Provided by <a href="/createreview/<%= sellingId%>"><%=email%></a> 
+	    </span><br>
+					
 		<%if(canEdit == "true"){%>
 		 <span class="">
                 <a href="/editSelling/<%= sellingId%>">Edit</a>
@@ -254,9 +258,9 @@ width:35%;
 						<span class="">
 						<%= quantity%> available</span>
 					</span>
-					
-					
-					<span class="mi-er"><i class="spr icser"></i><span class="sd-err" id="errf" tabindex="-1"></span></span>
+					<%if(err != null){%>
+					<span class="mi-er"><i class="spr icser"></i><span class="sd-err" id="errf" tabindex="-1"><%=err%></span></span>
+					<%}%>
 				<!--   <span class="vi-qty-vert-algn vi-qty-slash"> / </span>   -->
        
 		
