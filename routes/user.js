@@ -274,7 +274,7 @@ function sellHis(req,res){
 	console.log(req.user.id);
     sql.fetchData(hisSQL,function(error,result){
     	console.log(result);
-    	res.render('sellHis',{
+    	res.render('sellhis',{
     		
     		data:result,
     		user:req.user,

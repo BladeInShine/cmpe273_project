@@ -350,12 +350,13 @@ function checkOut(req, res){
 			var cartId = rows[i].cartid;
 			var sellingId = rows[i].sellingid;
 			var dateObj = new Date();
+			var quantity = rows[i].quantity;
 			var month = dateObj.getUTCMonth() + 1; //months from 1-12
 			var day = dateObj.getUTCDate();
 			var year = dateObj.getUTCFullYear();
 			var date = month + "/" + day + "/" + year;
 			
-			var qS2 = "INSERT INTO `cmpe273project`.`buying` ( `selling`, `buyer`, `date`) VALUES ( '" + sellingId + "', '" + userId + "', '" + date + "');";
+			var qS2 = "INSERT INTO `cmpe273project`.`buying` ( `selling`, `buyer`, `date`, `quantity`) VALUES ( '" + sellingId + "', '" + userId + "', '" + date + "', " + quantity + ");";
 			sql_con.insert(qS2);
 			var qS2 = "DELETE FROM `cmpe273project`.`cart` WHERE `cartid`='" + cartId + "';";
 			sql_con.insert(qS2);
