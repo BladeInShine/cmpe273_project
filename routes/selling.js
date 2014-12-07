@@ -10,7 +10,7 @@ function getAllSelling(req, res){
 }
 
 function createSelling(req, res){
-	//if(!req.isAuthenticated()){res.redirect('/login');}
+	if(!req.isAuthenticated()){res.redirect('/login');}
 	console.log("Inside createSelling");
 
 	console.log(req.files);
@@ -77,38 +77,48 @@ function createSelling(req, res){
 function deleteSelling(req, res){}
 
 function buyProduct(req,res){
+	if(!req.isAuthenticated()){
+		 res.redirect('/login');
+	}
 	var userId = req.user.userid;
 	var productId = req.query.productId;
 	var sellingId = req.query.sellingId;
 	var quantity = req.body.quantity;
-	//req.session.message = "";
 	
-	//var qS1 = "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
-	//sql_con.fetchData(qS1, function(error, rows){
+	
+	var qS1 = "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
+	sql_con.fetchData(qS1, function(error, rows){
 		
-		//if(rows != null && rows.length > 0){
-			// var totalQuantity = rows[0].quantity;
-			//if(quantity > totalQuantity){
-			//	req.session.message = "!No enough product";
-			//	res.redirect('/selling/' + sellingId);
+		if(rows != null && rows.length > 0){
+			 var totalQuantity = rows[0].quantity;
+			if(quantity > totalQuantity){
+			
+				res.redirect('/selling/' + sellingId + "?err=!No Enough Product");
 				
-			//}else{
-				var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "');";
+			}else{
+				var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`,`num`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "', '"+ quantity +"');";
 				
 				sql_con.insert(qS);
 				
 				res.redirect('/cart/'+ userId);
-			//}				
-		//}
+			}				
+		}
 
-	//});
+	});
 	
 	
 }
-
+//why
 function getSelling(req,res){
+	if(!req.isAuthenticated())
+	 {
+		 res.redirect('/login');
+		}
+	else{
 	console.log("sellinggggggg");
 	var sellingId = req.params.sellingid;
+	var err = req.query.err;
+	//console.log(err);
 	
 	var qS = "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
 
@@ -140,11 +150,17 @@ function getSelling(req,res){
 					res.render('404page',{message: "Product Sold Out"});
 					return;
 				}
-				res.render('selling',{email : userEmail, productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, canEdit: canEdit});
+				qS3 = "SELECT * FROM `cmpe273project`.`user` WHERE userid = '" + ownerId + "';";
+				sql_con.fetchData(qS3, function(error, rows3){
+					var ownerEmail = rows3[0].email;
+					res.render('selling',{email : userEmail, productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity,ownerId: ownerId,ownerEmail: ownerEmail, canEdit: canEdit, err: err});
+				})
+				
 			});
 		}
-
+		
 	});
+	}
 }
 
 function createSellingPage(req,res){
@@ -166,6 +182,9 @@ function createSellingPage(req,res){
 		}
 }
 function editSellPage(req,res){
+	if(!req.isAuthenticated()){
+		 res.redirect('/login');
+	}
 	if(false){res.redirect('/login');}
 	else{
 		var sellingId = req.params.sellingid;
@@ -196,7 +215,7 @@ function editSellPage(req,res){
 }
 function editSellInfo(req,res){
 	
-	//if(!req.isAuthenticated()){res.redirect('/login');}
+	if(!req.isAuthenticated()){res.redirect('/login');}
 	console.log("Inside editSellInfo");
 
 	console.log(req.files);
