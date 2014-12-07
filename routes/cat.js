@@ -28,7 +28,7 @@ var catname=req.param('catname');
 console.log("catname:"+catname);
 
 
-var catSQL="select product.id as 'pdtid',selling.id as 'sellid',auction.id as 'aucid' ,name,sellorauction ,pictureurl from cmpe273project.product join cmpe273project.selling join cmpe273project.auction where ( product.id=selling.product or product.id=auction.product) and cat='"+catname+"'group by pdtid;";
+var catSQL="select product.id as 'pdtid',selling.id as 'sellid',auction.id as 'aucid' ,name,sellorauction ,pictureurl from cmpe273project.product join cmpe273project.selling join cmpe273project.auction where ( product.id=selling.product or product.id=auction.product) and 1 limit 20 and cat='"+catname+"'group by pdtid;";
 console.log("sql"+catSQL);
 sql.fetchData(catSQL,function(error,result){
 	
