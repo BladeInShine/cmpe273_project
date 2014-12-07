@@ -329,7 +329,7 @@ function checkOut(req, res){
 	if(!req.isAuthenticated())
 	 {
 		 res.redirect('/login');
-		}
+	}
 	var userId=req.user.userid;
 	var userEmail = req.user.email;
 	
@@ -343,7 +343,10 @@ function checkOut(req, res){
 			return;
 		}
 		
-		for(var i = 0; i < rows.lenght; i ++){
+		console.log(rows.length);
+		
+		for(var i = 0; i < rows.length; i ++){
+			
 			
 			var cartId = rows[i].cartid;
 			var sellingId = rows[i].sellingid;
@@ -359,10 +362,9 @@ function checkOut(req, res){
 			sql_con.insert(qS2);
 		}
 		
-		res.render('chechout');
+		res.render('checkout');
 	});
 	
-	res.render('checkout');
 }
 
 function deleteAuction(req, res){}
