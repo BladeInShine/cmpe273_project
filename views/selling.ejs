@@ -206,8 +206,12 @@ width:35%;
 		<h1 class="it-ttl" itemprop="name" id="itemTitle"><span class="g-hdn">Details about  &nbsp;</span><%=productname%></h1>
 		
 		<span class="">
-	    Provided by <a href="/createreview/<%= sellingId%>"><%=email%></a> 
+	    Provided by <a href="/review/<%= ownerId%>"><%=ownerEmail%></a> 
 	    </span><br>
+	    <span class="">
+	     <a href="/createreview/<%= sellingId%>">Write a review</a> 
+	    </span>
+	    <br>
 					
 		<%if(canEdit == "true"){%>
 		 <span class="">
