@@ -6,7 +6,7 @@ function getReviewPage(req, res){
 	sql_con.fetchData(pQuery, function(errors, rows){
 		var sidin = '<input type="hidden" name="selling" value='+sid+' >';
 		var uin = '<input type="hidden" name="user" value='+req.user.email+' >';
-		var ppicin = '<a href="http://myworld.ebay.com/paypal_digital_gifts"><img src="'+rows[0].pictureurl+'" alt="User Avatar" id="myimg" border="0"></a>';
+		var ppicin = '<img src="'+rows[0].pictureurl+'" alt="User Avatar" id="myimg" border="0">';
 		var pnamein = '<a title="Member id paypal_digital_gifts" href="http://myworld.ebay.com/paypal_digital_gifts"><span class="mbg-nw">'+rows[0].name+'</span></a>';
 		var sell = rows[0].firstname.charAt(0)+". "+rows[0].lastname;
 		
