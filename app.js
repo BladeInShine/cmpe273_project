@@ -181,6 +181,10 @@ app.get('/delitem/:cartid', cart.delItem);
 
 app.get('');
 
+app.get('/noCache', auction.noCache);
+
+app.get('/cache', auction.cache);
+
  
 var port= process.env.PORT||3000;
 app.listen(port,function(){
