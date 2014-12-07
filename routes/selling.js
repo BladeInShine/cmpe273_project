@@ -10,7 +10,7 @@ function getAllSelling(req, res){
 }
 
 function createSelling(req, res){
-	//if(!req.isAuthenticated()){res.redirect('/login');}
+	if(!req.isAuthenticated()){res.redirect('/login');}
 	console.log("Inside createSelling");
 
 	console.log(req.files);
@@ -77,6 +77,9 @@ function createSelling(req, res){
 function deleteSelling(req, res){}
 
 function buyProduct(req,res){
+	if(!req.isAuthenticated()){
+		 res.redirect('/login');
+	}
 	var userId = req.user.userid;
 	var productId = req.query.productId;
 	var sellingId = req.query.sellingId;
@@ -93,7 +96,7 @@ function buyProduct(req,res){
 				res.redirect('/selling/' + sellingId + "?err=!No Enough Product");
 				
 			}else{
-				var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "');";
+				var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`,`quantity`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "', '"+ quantity +"');";
 				
 				sql_con.insert(qS);
 				
@@ -107,6 +110,9 @@ function buyProduct(req,res){
 }
 
 function getSelling(req,res){
+	if(!req.isAuthenticated()){
+		 res.redirect('/login');
+	}
 	console.log("sellinggggggg");
 	var sellingId = req.params.sellingid;
 	var err = req.query.err;
@@ -168,6 +174,9 @@ function createSellingPage(req,res){
 		}
 }
 function editSellPage(req,res){
+	if(!req.isAuthenticated()){
+		 res.redirect('/login');
+	}
 	if(false){res.redirect('/login');}
 	else{
 		var sellingId = req.params.sellingid;
@@ -198,7 +207,7 @@ function editSellPage(req,res){
 }
 function editSellInfo(req,res){
 	
-	//if(!req.isAuthenticated()){res.redirect('/login');}
+	if(!req.isAuthenticated()){res.redirect('/login');}
 	console.log("Inside editSellInfo");
 
 	console.log(req.files);
