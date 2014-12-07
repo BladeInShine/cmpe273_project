@@ -9,7 +9,7 @@ function getAllCat(req,res) {
 			{	
 			 sql.fetchData(proSQL,function(error,result){
 					var mes="";
-					res.render('allCat',{
+					res.render('allcat',{
 						cat:result,
 						mes:mes
 						
