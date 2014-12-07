@@ -174,7 +174,21 @@ function editSellPage(req,res){
 		sql_con.fetchData(qS, function(error, rows){
 			
 			//res.render('sellingcreation', {cats: rows});
-			res.render('editSelling',{sellingId: sellingId, cats: rows});
+			var qS1 = "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
+			sql_con.fetchData(qS1, function(error, rows1){
+				var productId = rows1[0].product;
+				var price = rows1[0].price;
+				var quantity = rows1[0].quantity;
+				var qS2 = "SELECT * FROM `cmpe273project`.`product` WHERE id = '" + productId + "';";
+				sql_con.fetchData(qS2, function(error, rows2){
+					var productName = rows2[0].name;
+					var des = rows2[0].description;
+					var cat = rows2[0].cat;
+					var condition = rows2[0].condi;
+					var picUrl = rows2[0].pictureurl;
+					res.render('editSelling',{sellingId: sellingId, cats: rows, productName: productName, des: des, price: price, quantity: quantity, cat: cat, condition: condition, picUrl: picUrl});
+				})
+			})
 			
 		});
 		
