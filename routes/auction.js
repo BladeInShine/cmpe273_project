@@ -64,7 +64,7 @@ function getAuction(req, res){
 				var timeRemain = days + ' days ' + hours + ' hours ' + mins + ' mins';
 				
 				var pictureUrl = rows2[0].pictureurl;
-				res.render('auction',{email : userEmail, productname: name, currentprice: currentPrice, condition: condition, addprice: addPrice, bidnum: bidNum, pictureurl: pictureUrl, auctionid: auctionId, timeremain:timeRemain, selleremail: sellerEmail, sellerid: sellerId});
+				res.render('auction',{user: req.user, email : userEmail, productname: name, currentprice: currentPrice, condition: condition, addprice: addPrice, bidnum: bidNum, pictureurl: pictureUrl, auctionid: auctionId, timeremain:timeRemain, selleremail: sellerEmail, sellerid: sellerId});
 			});
 		}
 
@@ -150,7 +150,7 @@ function createAuctionPage(req, res){
 		
 		sql_con.fetchData(qS, function(error, rows){
 
-			res.render('auctioncreation', {cats: rows});
+			res.render('auctioncreation', {user: req.user, cats: rows});
 	});
 	
 	}
@@ -196,7 +196,7 @@ function getBid(req, res){
 			var startPrice = rows2[0].startprice;
 			var startDate = rows2[0].startdate;
 			
-			res.render('bids', {bids: rows, bidnum: bidNum, startprice: startPrice, startdate: startDate, auctionid: auctionId, email: req.user.email, timeremain: timeRemain});
+			res.render('bids', {user: req.user, bids: rows, bidnum: bidNum, startprice: startPrice, startdate: startDate, auctionid: auctionId, email: req.user.email, timeremain: timeRemain});
 		});
 		
 });
@@ -350,14 +350,17 @@ function checkOut(req, res){
 			var cartId = rows[i].cartid;
 			var sellingId = rows[i].sellingid;
 			var dateObj = new Date();
+			var quantity = rows[i].num;
 			var month = dateObj.getUTCMonth() + 1; //months from 1-12
 			var day = dateObj.getUTCDate();
 			var year = dateObj.getUTCFullYear();
 			var date = month + "/" + day + "/" + year;
 			
-			var qS2 = "INSERT INTO `cmpe273project`.`buying` ( `selling`, `buyer`, `date`) VALUES ( '" + sellingId + "', '" + userId + "', '" + date + "');";
+			var qS2 = "INSERT INTO `cmpe273project`.`buying` ( `selling`, `buyer`, `date`, `quantity`) VALUES ( '" + sellingId + "', '" + userId + "', '" + date + "', " + quantity + ");";
 			sql_con.insert(qS2);
 			var qS2 = "DELETE FROM `cmpe273project`.`cart` WHERE `cartid`='" + cartId + "';";
+			sql_con.insert(qS2);
+			var qS2 = "UPDATE `cmpe273project`.`selling` SET `quantity`= `quantity` - " + quantity + " WHERE `id`='" + sellingId + "';";
 			sql_con.insert(qS2);
 		}
 		

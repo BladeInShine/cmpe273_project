@@ -96,7 +96,7 @@ function buyProduct(req,res){
 				res.redirect('/selling/' + sellingId + "?err=!No Enough Product");
 				
 			}else{
-				var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`,`quantity`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "', '"+ quantity +"');";
+				var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`,`num`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "', '"+ quantity +"');";
 				
 				sql_con.insert(qS);
 				
@@ -150,7 +150,12 @@ function getSelling(req,res){
 					res.render('404page',{message: "Product Sold Out"});
 					return;
 				}
-				res.render('selling',{email : userEmail, productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, canEdit: canEdit, err: err});
+				qS3 = "SELECT * FROM `cmpe273project`.`user` WHERE userid = '" + ownerId + "';";
+				sql_con.fetchData(qS3, function(error, rows3){
+					var ownerEmail = rows3[0].email;
+					res.render('selling',{email : userEmail, userId: userId, productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity,ownerId: ownerId,ownerEmail: ownerEmail, canEdit: canEdit, err: err});
+				})
+				
 			});
 		}
 		
