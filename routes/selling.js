@@ -26,7 +26,7 @@ function createSelling(req, res){
 	var pictureUrl = req.files.image.path.substring(42,len);
 	var name = req.body.productname; 
 	var des = req.body.des;
-	var owner = 1;
+	var owner = req.user.userid;
 	var cat = req.body.cat;
 	var condition = req.body.condition;
 	var quantity = req.body.quantity;
@@ -77,31 +77,31 @@ function createSelling(req, res){
 function deleteSelling(req, res){}
 
 function buyProduct(req,res){
-	var userId = 1;
+	var userId = req.user.userid;
 	var productId = req.query.productId;
 	var sellingId = req.query.sellingId;
 	var quantity = req.body.quantity;
 	//req.session.message = "";
 	
-	var qS1 = "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
-	sql_con.fetchData(qS1, function(error, rows){
+	//var qS1 = "SELECT * FROM `cmpe273project`.`selling` WHERE id = '" + sellingId + "';";
+	//sql_con.fetchData(qS1, function(error, rows){
 		
-		if(rows != null && rows.length > 0){
-			 var totalQuantity = rows[0].quantity;
-			if(quantity > totalQuantity){
-				req.session.message = "!No enough product";
-				res.redirect('/selling/' + sellingId);
+		//if(rows != null && rows.length > 0){
+			// var totalQuantity = rows[0].quantity;
+			//if(quantity > totalQuantity){
+			//	req.session.message = "!No enough product";
+			//	res.redirect('/selling/' + sellingId);
 				
-			}else{
+			//}else{
 				var qS = "INSERT INTO `cmpe273project`.`cart` (`userid`, `productid`,`sellingid`) VALUES ('" + userId + "', '" + productId + "','" + sellingId + "');";
 				
 				sql_con.insert(qS);
 				
 				res.redirect('/cart/'+ userId);
-			}				
-		}
+			//}				
+		//}
 
-	});
+	//});
 	
 	
 }
@@ -120,7 +120,8 @@ function getSelling(req,res){
 			
 			sql_con.fetchData(qS2, function(error, rows2){
 				var canEdit = "false";
-				var userId = 1;
+				//var userId = 1;
+				var userId = req.user.userid;
 				var ownerId = rows2[0].owner;
 				if(userId == ownerId) canEdit = "true";
 				console.log("I can edit or not"+ canEdit);
@@ -129,12 +130,17 @@ function getSelling(req,res){
 				var name = rows2[0].name;
 				var price = rows[0].price;
 				var pictureUrl = rows2[0].pictureurl;
-				var quantity = rows[0].quantity;
+				var quantity = parseInt(rows[0].quantity);
+				var userEmail = req.user.email;
 				
-				var message = req.session.message;
-				if(message == null) message = "";
+				//var message = req.session.message;
+				//if(message == null) message = "";
 				//res.render('sell',{canEdit: canEdit});
-				res.render('selling',{email : "a", productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, message: message, canEdit: canEdit});
+				if(quantity < 1) {
+					res.render('404page',{message: "Product Sold Out"});
+					return;
+				}
+				res.render('selling',{email : userEmail, productname: name, condition: condition, price: price, pictureurl: pictureUrl, productId: productId, sellingId: sellingId, quantity: quantity, canEdit: canEdit});
 			});
 		}
 
