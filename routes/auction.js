@@ -272,7 +272,7 @@ function getBidHis(req, res){
 //				return;
 //			}
 			
-			var qS2 = "SELECT product.name as name, product.pictureurl as url, bid.price as price, bid.date as date FROM cmpe273project.auction auction join cmpe273project.product product join cmpe273project.bid bid where auction.id = bid.auction and product.id = auction.product and auction.inprogress = 'true' and bid.bidder = '" + userEmail + "';";
+			var qS2 = "SELECT product.name as name, product.pictureurl as url, bid.price as price, bid.date as date, bid.id as id FROM cmpe273project.auction auction join cmpe273project.product product join cmpe273project.bid bid where auction.id = bid.auction and product.id = auction.product and auction.inprogress = 'true' and bid.bidder = '" + userEmail + "';";
 			
 			sql_con.fetchData(qS2, function(error, rows2){
 				
@@ -310,7 +310,7 @@ function getAucHis(req, res){
 //				return;
 //			}
 			
-			var qS2 = "SELECT product.name as name, product.pictureurl as url, auction.currentprice as currentprice FROM cmpe273project.auction auction join cmpe273project.product product where product.id = auction.product and auction.inprogress = 'true' and product.owner = " + userId + ";";
+			var qS2 = "SELECT product.name as name, product.pictureurl as url, auction.currentprice as currentprice, auction.id as id FROM cmpe273project.auction auction join cmpe273project.product product where product.id = auction.product and auction.inprogress = 'true' and product.owner = " + userId + ";";
 			
 			sql_con.fetchData(qS2, function(error, rows2){
 				
