@@ -270,7 +270,7 @@ function sellHis(req,res){
 		 res.redirect('/login');
 		}
 	var user=req.user.userid;
-	var hisSQL="select startdate,name,description,price,quantity from cmpe273project.user join cmpe273project.buying join cmpe273project.selling join cmpe273project.product where user.userid=product.owner and buying.selling = selling.id and selling.product =product.id and user.userid="+user+";";
+	var hisSQL="select selling.id as 'sellid',product.id as'pdtid', startdate,name,description,price,quantity from cmpe273project.user join cmpe273project.selling join cmpe273project.product where user.userid=product.owner and selling.product =product.id and user.userid="+user+";";
 	console.log(req.user.id);
     sql.fetchData(hisSQL,function(error,result){
     	console.log(result);
