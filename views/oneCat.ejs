@@ -153,22 +153,43 @@ var count=0;
      
       for(var i=0;i<pdts.length;i++)
     {%>
-
+       <%if(pdts[i].sellorauction=="sell")
+       	{%>
      <div class="l2Wpr">
 													<div class="cont topcat topcatl12lrg">
 	<div class="flm" style="z-index:0">
 		<div class="simg">
-			<a href="/<%=pdts[i].sellorauction%>/<%=pdts[i].id%>" ><img src="<%=pdts[i].pictureurl%>" border="0" alt="Fiction &amp; Literature"></a>
+			<a href="/selling/<%=pdts[i].sellid%>" ><img src="<%=pdts[i].pictureurl%>" border="0" alt="Fiction &amp; Literature"></a>
 				</div>
 	</div>
 	<div class="btm">
 			<ul id="bc">
-			  	<li><a href="/<%=pdts[i].sellorauction%>/<%=pdts[i].id%>" class="imgTitle ellipsis-title" title="<%=pdts[i].name%>"><%=pdts[i].name%></a></li>
+			  	<li><a href="/selling/<%=pdts[i].sellid%>" class="imgTitle ellipsis-title" title="<%=pdts[i].name%>"><%=pdts[i].name%></a></li>
+			</ul>
+		</div>									
+	</div></div>
+     <%}
+
+     
+
+else{%>
+  <div class="l2Wpr">
+													<div class="cont topcat topcatl12lrg">
+	<div class="flm" style="z-index:0">
+		<div class="simg">
+			<a href="/auction/<%=pdts[i].aucid%>" ><img src="<%=pdts[i].pictureurl%>" border="0" alt="Fiction &amp; Literature"></a>
+				</div>
+	</div>
+	<div class="btm">
+			<ul id="bc">
+			  	<li><a href="/auction/<%=pdts[i].aucid%>" class="imgTitle ellipsis-title" title="<%=pdts[i].name%>"><%=pdts[i].name%></a></li>
 			</ul>
 		</div>									
 	</div></div>
 
 
+<%}
+%>
     <%}
 
 
