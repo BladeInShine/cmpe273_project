@@ -272,7 +272,7 @@ function getBidHis(req, res){
 //				return;
 //			}
 			
-			var qS2 = "SELECT product.name as name, product.pictureurl as url, bid.price as price, bid.date as date, bid.id as id FROM cmpe273project.auction auction join cmpe273project.product product join cmpe273project.bid bid where auction.id = bid.auction and product.id = auction.product and auction.inprogress = 'true' and bid.bidder = '" + userEmail + "';";
+			var qS2 = "SELECT product.name as name, product.pictureurl as url, bid.price as price, bid.date as date, bid.id as id, auction.id as auctionid FROM cmpe273project.auction auction join cmpe273project.product product join cmpe273project.bid bid where auction.id = bid.auction and product.id = auction.product and auction.inprogress = 'true' and bid.bidder = '" + userEmail + "';";
 			
 			sql_con.fetchData(qS2, function(error, rows2){
 				
@@ -369,6 +369,17 @@ function checkOut(req, res){
 	
 }
 
+function noCache(req, res){
+	
+	render()
+}
+
+function cache(req, res){
+	
+	
+}
+
+
 function deleteAuction(req, res){}
 
 exports.getAllAuction = getAllAuction;
@@ -381,3 +392,5 @@ exports.getBid = getBid;
 exports.getBidHis = getBidHis;
 exports.getAucHis = getAucHis;
 exports.chechOut = checkOut;
+exports.noCache = noCache; 
+exports.cache = cache;
