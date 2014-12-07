@@ -28,7 +28,7 @@ function getAuction(req, res){
 	var userEmail = req.user.email;
 	var auctionId = req.params.auctionid;
 	
-	var qS = "SELECT * FROM `cmpe273project`.`auction` WHERE id = '" + auctionId + "';";
+	var qS = "SELECT auction.currentprice as currentprice, auction.addprice as addprice, auction.bidnum as bidnum, auction.minremain as minremain, user.selleremail as selleremail FROM `cmpe273project`.`auction` auction join cmpe273project.user user WHERE auction.seller = user.userid and auction.id = '" + auctionId + "';";
 
 	sql_con.fetchData(qS, function(error, rows){
 		
@@ -55,6 +55,7 @@ function getAuction(req, res){
 				var addPrice = rows[0].addprice;
 				var bidNum = rows[0].bidnum;
 				var minRemain = parseInt(rows[0].minremain);
+				var sellerEmail = rows[0].selleremail;
 				
 				var days = parseInt(minRemain/(24*60));
 				var hours = parseInt(minRemain%(24*60)/60);
@@ -62,7 +63,7 @@ function getAuction(req, res){
 				var timeRemain = days + ' days ' + hours + ' hours ' + mins + ' mins';
 				
 				var pictureUrl = rows2[0].pictureurl;
-				res.render('auction',{email : userEmail, productname: name, currentprice: currentPrice, condition: condition, addprice: addPrice, bidnum: bidNum, pictureurl: pictureUrl, auctionid: auctionId, timeremain:timeRemain, seller: seller});
+				res.render('auction',{email : userEmail, productname: name, currentprice: currentPrice, condition: condition, addprice: addPrice, bidnum: bidNum, pictureurl: pictureUrl, auctionid: auctionId, timeremain:timeRemain, selleremail: sellerEmail});
 			});
 		}
 
@@ -280,7 +281,7 @@ function getBidHis(req, res){
 //					return;
 //				}
 				
-				res.render('bidhis', {winBids: rows, onGBids: rows2});
+				res.render('bidhis', {winBids: rows, onGBids: rows2, user: req.user});
 				
 			});
 				
