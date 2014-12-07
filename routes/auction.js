@@ -49,7 +49,7 @@ function getAuction(req, res){
 			sql_con.fetchData(qS2, function(error, rows2){
 				
 				var currentPrice = rows[0].currentprice;
-				var seller = 
+				//var seller = 
 				var condition = rows2[0].condi;
 				var name = rows2[0].name;
 				var addPrice = rows[0].addprice;
@@ -318,7 +318,7 @@ function getAucHis(req, res){
 //					return;
 //				}
 				
-				res.render('auchis', {completeAucs: rows, onGAucs: rows2});
+				res.render('auchis', {ca: rows, oa: rows2, user: req.user});
 			});
 			
 	});
