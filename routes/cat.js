@@ -48,14 +48,15 @@ sql.fetchData(catSQL,function(error,result){
 
 function createCat(req,res) {
 	console.log("create cat");
-	var name = req.param('catname');
-	var insertSQL = "INSERT INTO cat (catname) VALUES('"+name+"')";
-	var selectSQL = "select * from cat where UPPER(categoryname) = UPPER('"+name+"')";
+	var name = req.body.catname;
+	var des =req.body.des;
+	var insertSQL = "INSERT INTO cat (catname,description) VALUES('"+name+"'"+des+"');";
+	
 	console.log("create cat");
 	
 	sql.fetchData(selectSQL, function(error, result){
 		sql.fetchData(insertSQL, function(error, result){
-			res.redirect('/');	
+			res.redirect('/myebay');	
 		});
 	});	
 }
