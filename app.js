@@ -121,7 +121,7 @@ app.post('/buyproduct', selling.buyProduct);
 app.get('/selling/:sellingid', selling.getSelling);
 
 //get all sellings, in json format TBD
-app.get('/selling', selling.getAllSelling);
+app.get('/allselling', user.getAllSelling);
 
 //get selling creation page
 app.get('/cselling', selling.createSellingPage);
@@ -136,7 +136,7 @@ app.post('/editSelling/:sellingid', selling.editSellInfo);
 
 
 //get all auctions, in json format TBD
-app.get('/auction', auction.getAllAuction);
+app.get('/allauction', user.getAllAuction);
 
 //get auction detail page
 app.get('/auction/:auctionid', auction.getAuction);
