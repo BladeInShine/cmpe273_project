@@ -166,7 +166,7 @@ function getSelling(req,res){
 function createSellingPage(req,res){
 	if(!req.isAuthenticated()){
 		 res.redirect('/login');
-	}
+	}else{
 	if(false){res.redirect('/login');}
 	
 		else{
@@ -174,12 +174,14 @@ function createSellingPage(req,res){
 			var qS = "SELECT * FROM cmpe273project.cat;";
 		
 			sql_con.fetchData(qS, function(error, rows){
-				
-				res.render('sellingcreation', {cats: rows});
+				var userId = req.user.userid;
+				var userEmail = req.user.email;
+				res.render('sellingcreation', {cats: rows, userId: userId, userEmail: userEmail});
 				
 			});
 	
 		}
+	}
 }
 function editSellPage(req,res){
 	if(!req.isAuthenticated()){
