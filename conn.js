@@ -4,6 +4,9 @@
 
 var mysql = require('mysql');
 
+var Memcached = require('memcached');
+var memcached = new Memcached('localhost:11211');
+
 var av = [true, true, true, true, true, true, true, true, true, true];
 
 var cons = [];
@@ -75,6 +78,46 @@ function fetchData(sqlQuery, callback){
 	returnCon(i);
 }
 
+
+function fetchDataC(sqlQuery, callback){
+	
+	console.log("\nSQL Query::"+sqlQuery);
+	
+	var sqlQueryAfter = sqlQuery.replace(/\s+/g, '');
+	
+	memcached.get(sqlQueryAfter, function (err, result) {
+		
+		if(err || result == null){
+			
+			console.log("There is no such data");
+			
+			var conn = getCon();
+			
+			var i = conn[1];
+			
+			conn[0].query(sqlQuery, function(err, rows, fields) {
+				if(err){
+					console.log("ERROR: " + err.message);
+				}
+				else
+				{
+					memcached.set(sqlQueryAfter, rows, 10, function (err) { /* stuff */ });
+					callback(err, rows);
+				}
+			});
+			
+			returnCon(i);
+		}
+		else{
+			
+			console.log("There is such data");
+			console.log(result);
+			callback(err, result);
+		}
+		  
+	});
+}
+
 function insert(qS){
 	
 	var conn = getCon();
@@ -103,6 +146,7 @@ function query(queryS, con){
 exports.query = query;
 exports.connection = connection;
 exports.fetchData = fetchData;
+exports.fetchDataC = fetchDataC;
 exports.insert = insert;
 exports.getCon = getCon;
 exports.returnCon = returnCon;

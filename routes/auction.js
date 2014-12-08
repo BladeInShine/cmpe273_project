@@ -1,6 +1,8 @@
 var sql_con = require('../conn'),
 	fs   = require('fs');
 	
+var Memcached = require('memcached');
+var memcached = new Memcached('localhost:11211');
 
 function getAllAuction(req, res){
 	
@@ -371,11 +373,47 @@ function checkOut(req, res){
 
 function noCache(req, res){
 	
-	render()
+	var qS = "select * from cmpe273project.user where userid = 1";
+	sql_con.fetchData(qS, function(error, rows){
+		
+		
+		res.render('perftest', {data: rows[0]});
+	});
+	
+	
 }
 
 function cache(req, res){
 	
+	var qS = "select * from cmpe273project.user where userid = 1";
+	
+	sql_con.fetchDataC(qS, function(error, rows){
+		
+		res.render('perftest', {data: rows[0]});
+	});
+	
+//	memcached.set('foo', 'world', lifetime, function( err, result ){
+//		  if( err ) console.error( err );
+//		  console.dir( result );
+//	});
+	
+	
+//	memcached.get('foo', function (err, data) {
+//		  
+//		if(err || data == null){
+//			
+//			console.log("No such data");
+//			memcached.set('foo', {"a": "b"}, 100, function (err) { /* stuff */ });
+//			res.render('perftest', {data: {"a": "b"}});
+//			
+//		}
+//		else{
+//			
+//			console.log("There is no error");
+//			console.log(data);
+//			res.render('perftest', {data: data});
+//		}
+//	});
 	
 }
 

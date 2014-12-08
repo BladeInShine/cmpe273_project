@@ -181,7 +181,7 @@ app.get('/delitem/:cartid', cart.delItem);
 
 app.get('');
 
-app.get('/noCache', auction.noCache);
+app.get('/nocache', auction.noCache);
 
 app.get('/cache', auction.cache);
 
