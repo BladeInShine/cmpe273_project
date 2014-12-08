@@ -186,7 +186,7 @@ function createSellingPage(req,res){
 function editSellPage(req,res){
 	if(!req.isAuthenticated()){
 		 res.redirect('/login');
-	}
+	}else{
 	if(false){res.redirect('/login');}
 	else{
 		var sellingId = req.params.sellingid;
@@ -207,13 +207,16 @@ function editSellPage(req,res){
 					var cat = rows2[0].cat;
 					var condition = rows2[0].condi;
 					var picUrl = rows2[0].pictureurl;
-					res.render('editSelling',{sellingId: sellingId, cats: rows, productName: productName, des: des, price: price, quantity: quantity, cat: cat, condition: condition, picUrl: picUrl});
+					var userId = req.user.userid;
+					var userEmail = req.user.email;
+					res.render('editSelling',{userId: userId, userEmail: userEmail, sellingId: sellingId, cats: rows, productName: productName, des: des, price: price, quantity: quantity, cat: cat, condition: condition, picUrl: picUrl});
 				})
 			})
 			
 		});
 		
 	}
+}
 }
 function editSellInfo(req,res){
 	
