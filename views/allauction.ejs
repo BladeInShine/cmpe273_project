@@ -1,0 +1,18 @@
+<html>
+<body>
+<h2>all selling</h2>
+	
+	<%for(var i=0;i<auction.length;i++)
+
+
+{%>
+
+
+	<p>[id:<%=auction[i].id%>,productID:<%=auction[i].product%>,startprice:<%=selling[i].startprice%>,startdate:<%=auction[i].startdate%>,enddata:<%=auction[i].enddate%>,sellerID:<%=auction[i].seller%>,addprice:<%=auction[i].addprice%>,buyerID:<%=auction[i].buyer%>,inprocess:<%=auction[i].inprocess%>,currentprice:<%=auction[i].currentprice%>,bidnum:<%=auction[i].bidnum%>]</p>
+<%}
+%>
+
+
+
+	</body>
+	</html>

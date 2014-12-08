@@ -102,7 +102,44 @@ function logout(req,res){
     req.logout();
 	res.redirect('/');
 }
-
+function getAllSelling(req,res) {
+	var proSQL="select * from selling ;"
+		if(req.user.email=="admin@ebay.com")
+			{	
+			 sql.fetchData(proSQL,function(error,result){
+					
+					res.render('allselling',{
+						selling:result,
+						
+						
+					});					
+				})	
+			}
+		 else {
+			 res.redirect('/login');
+			 
+		}
+			
+}
+function getAllAuction(req,res) {
+	var proSQL="select * from auction ;"
+		if(req.user.email=="admin@ebay.com")
+			{	
+			 sql.fetchData(proSQL,function(error,result){
+					
+					res.render('allauction',{
+						auction:result,
+						
+						
+					});					
+				})	
+			}
+		 else {
+			 res.redirect('/login');
+			 
+		}
+			
+}
  function passportAauth(username, password, done){
 	
 	var qS = "SELECT * FROM user where email=" + "'"+username + "';";
@@ -352,6 +389,8 @@ function deserializeUser(email,done){
 
 exports.root=root;
 exports.deserializeUser = deserializeUser;
+exports.getAllSelling=getAllSelling;
+exports.getAllAuction=getAllAuction;
 exports.serializeUser = serializeUser
 exports.login=login;
 exports.loginfail=loginfail;
