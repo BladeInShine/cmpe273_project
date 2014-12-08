@@ -245,7 +245,7 @@ function purHis(req,res){
 		 res.redirect('/login');
 		}
 	var user=req.user.userid;
-	var hisSQL="select selling.id as 'sellid' ,owner,date,name,description,price from cmpe273project.user join cmpe273project.buying join cmpe273project.selling join cmpe273project.product where user.userid=buying.buyer and buying.selling = selling.id and selling.product =product.id and user.userid="+user+";";	
+	var hisSQL="select product.pictureurl as 'url',selling.id as 'sellid' ,owner,date,name,description,price from cmpe273project.user join cmpe273project.buying join cmpe273project.selling join cmpe273project.product where user.userid=buying.buyer and buying.selling = selling.id and selling.product =product.id and user.userid="+user+";";	
 	
     sql.fetchData(hisSQL,function(error,result){
      
