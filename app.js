@@ -100,7 +100,7 @@ app.get('/cat/', cat.getAllCat);
 //get a page contains all products under this cat
 app.get('/cat/:catname', cat.getCat);
 
-app.post('/cat', cat.createCat);
+app.post('/createCat', cat.createCat);
 
 app.post('/deletecats', cat.deleteCat);
 
@@ -134,6 +134,8 @@ app.get('/editSelling/:sellingid', selling.editSellPage);
 
 app.post('/editSelling/:sellingid', selling.editSellInfo);
 
+
+app.post('/deleteuser', auction.deleteUser);
 
 //get all auctions, in json format TBD
 app.get('/allauction', user.getAllAuction);

@@ -347,6 +347,8 @@ function profileUpdate(req,res){
 }
 
 function profileUpdatePost(req,res){
+	
+	var userId = req.user.userid;
 	var pwd = req.body.password;  
 	var first = req.body.firstname;
 	var last = req.body.lastname;
@@ -354,7 +356,7 @@ function profileUpdatePost(req,res){
 	var city=req.body.city;
 	var state=req.body.state;
 	var zip=req.body.zip;
-	var userSQL = "update user set password='"+pwd+"',firstname='"+first+"',lastname='"+last+"',address='"+address+"',city='"+city+"',state='"+state+"',zip='"+zip+"';";
+	var userSQL = "update user set password='"+pwd+"',firstname='"+first+"',lastname='"+last+"',address='"+address+"',city='"+city+"',state='"+state+"',zip='"+zip+" where userid = " + userId + "';";
 	sql.fetchData(userSQL,function(error,result){
 		
 		

@@ -417,6 +417,13 @@ function cache(req, res){
 	
 }
 
+function deleteUser(req, res){
+	
+	var deleteUserId = req.body.deleteuserid;
+	var qS = "DELETE FROM `cmpe273project`.`user` WHERE `userid`='" + deleteUserId + "';";
+	sql_con.insert(qS);
+	res.redirect('/customer');
+}
 
 function deleteAuction(req, res){}
 
@@ -432,3 +439,4 @@ exports.getAucHis = getAucHis;
 exports.chechOut = checkOut;
 exports.noCache = noCache; 
 exports.cache = cache;
+exports.deleteUser = deleteUser;

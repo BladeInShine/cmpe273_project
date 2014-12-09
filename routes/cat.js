@@ -50,14 +50,14 @@ function createCat(req,res) {
 	console.log("create cat");
 	var name = req.body.catname;
 	var des =req.body.des;
-	var insertSQL = "INSERT INTO cat (catname,description) VALUES('"+name+"'"+des+"');";
+	var insertSQL = "INSERT INTO cat (catname,description) VALUES('"+name+"','"+des+"');";
 	
 	console.log("create cat");
 	
-	sql.fetchData(selectSQL, function(error, result){
-		sql.fetchData(insertSQL, function(error, result){
-			res.redirect('/myebay');	
-		});
+	sql.fetchData(insertSQL, function(error, result){
+		
+			res.redirect('/cat/');	
+		
 	});	
 }
 

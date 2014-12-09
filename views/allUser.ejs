@@ -10,6 +10,9 @@
 	<p>[id:<%=user[i].userid%>,email:<%=user[i].email%>,firstname:<%=user[i].firstname%>,lastname:<%=user[i].lastname%>,address:<%=user[i].address%>,city:<%=user[i].city%>,state:<%=user[i].state%>,zipcode:<%=user[i].zip%>]</p>
 <%}
 %>
-<form action="/delete"
+<form action="/deleteuser" method = 'POST'>
+<INPUT type="text" name="deleteuserid"> id of the user you want to delete</input>
+    <INPUT type="submit" value="delete"> 
+</form>
 	</body>
 	</html>
